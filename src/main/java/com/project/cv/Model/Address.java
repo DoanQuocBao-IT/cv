@@ -21,4 +21,7 @@ public class Address {
 
     private String city;
     private String address;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 }
