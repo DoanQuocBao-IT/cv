@@ -1,5 +1,6 @@
 package com.project.cv.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,10 +22,12 @@ public class Cv {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+
     private String profession;
     private String position;
     private String experience;
     @OneToOne
     @JoinColumn(name = "address_id")
+    @JsonIgnoreProperties("user")
     private Address address;
 }
