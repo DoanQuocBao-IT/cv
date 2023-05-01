@@ -1,5 +1,6 @@
 package com.project.cv.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,7 +23,7 @@ public class Recruit {
     @JoinColumn(name = "company_id")
     private User user;
     private String profession;
-    private int salary;
+    private String salary;
     private String position;
     private int inventory;
     private String gender;
@@ -34,5 +35,6 @@ public class Recruit {
 
     @OneToOne
     @JoinColumn(name = "address_id")
+    @JsonIgnoreProperties("user")
     private Address address;
 }

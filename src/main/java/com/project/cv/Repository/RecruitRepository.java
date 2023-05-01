@@ -1,4 +1,13 @@
 package com.project.cv.Repository;
 
-public interface RecruitRepository {
+import com.project.cv.Model.Recruit;
+import com.project.cv.Model.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+
+@Repository
+public interface RecruitRepository extends JpaRepository<Recruit,Integer> {
+    List<Recruit> findByUser(User user);
 }
