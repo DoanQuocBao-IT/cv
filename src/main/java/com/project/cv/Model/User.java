@@ -1,5 +1,6 @@
 package com.project.cv.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,6 +9,8 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -36,8 +39,18 @@ public class User {
     private String website;
     @OneToOne
     @JoinColumn(name = "address_id")
+    @JsonIgnoreProperties("user")
     private Address address;
-    @OneToMany
-    @JoinColumn(name = "jobs_id")
-    private Cv jobs;
+
+    @ManyToMany(fetch =FetchType.EAGER,cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "user_role",
+            joinColumns = {@JoinColumn(name = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "role_id")}
+    )
+    private Set<Role> roles=new HashSet<>();
+    public void addRole(Role role){
+        roles.add(role);
+    }
+
 }
