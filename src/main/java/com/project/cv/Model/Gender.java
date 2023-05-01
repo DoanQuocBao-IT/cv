@@ -10,7 +10,7 @@ public enum Gender {
 
     Gender(String status){this.gender=status;}
 
-    public String getExperience(){
+    public String getGender(){
         return this.gender;
     }
 }
