@@ -20,8 +20,8 @@ public class Cv {
     @Column(name = "id", nullable = false)
     private Integer id;
     @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+    @JoinColumn(name = "candidates_id")
+    private Candidates candidates;
 
     private String profession;
     private String position;

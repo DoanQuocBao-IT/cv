@@ -1,8 +1,10 @@
 package com.project.cv.Service.ServiceImpl;
 
 import com.project.cv.Dto.CreateCvDto;
+import com.project.cv.Model.Candidates;
 import com.project.cv.Model.Cv;
 import com.project.cv.Model.User;
+import com.project.cv.Repository.CandidateRepository;
 import com.project.cv.Repository.CvRepository;
 import com.project.cv.Repository.UserRepository;
 import com.project.cv.Service.CvService;
@@ -19,12 +21,15 @@ public class CvServiceImpl implements CvService {
     CvRepository cvRepository;
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    CandidateRepository candidateRepository;
     @Override
     public Cv addCV(CreateCvDto createCvDto) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         User candidate = userRepository.findUserByName(authentication.getName());
+        Candidates candidates=candidateRepository.findByCandidate(candidate);
         Cv cv=new Cv();
-        cv.setUser(candidate);
+        cv.setCandidates(candidates);
         cv.setExperience(createCvDto.getExperience());
         cv.setPosition(createCvDto.getPosition());
         cv.setProfession(createCvDto.getProfession());
@@ -34,8 +39,6 @@ public class CvServiceImpl implements CvService {
 
     @Override
     public Cv updateCV(int id, CreateCvDto cvDto) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        User candidate = userRepository.findUserByName(authentication.getName());
         Cv cv = cvRepository.findById(id).get();
         cv.setPosition(cvDto.getPosition());
         cv.setExperience(cvDto.getExperience());
@@ -48,7 +51,8 @@ public class CvServiceImpl implements CvService {
     public Cv allCV() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         User user = userRepository.findUserByName(authentication.getName());
-        return cvRepository.findByUser(user);
+        Candidates candidates=candidateRepository.findByCandidate(user);
+        return cvRepository.findByCandidates(candidates);
     }
 
     @Override
