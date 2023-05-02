@@ -37,7 +37,7 @@ public class CompanyController {
     }
     @GetMapping("/all/recruit")
     public List<Recruit> allCV(){
-        return recruitService.findAllRecruit();
+        return recruitService.findAllRecruitForCompany();
     }
     @GetMapping("/all/address")
     public List<Address> findAllAddressForUser(){
