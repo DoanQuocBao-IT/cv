@@ -11,10 +11,8 @@ import java.util.Date;
 public class UserDto {
     private String fname;
     private String image;
-    private Date birthday;
-    private String gender;
+    private String email;
     private String phone;
     private String website;
     private Address address;
-
 }
