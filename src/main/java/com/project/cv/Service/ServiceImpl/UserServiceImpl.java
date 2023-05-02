@@ -1,10 +1,11 @@
 package com.project.cv.Service.ServiceImpl;
 
+import com.project.cv.Dto.CompanyDto;
 import com.project.cv.Dto.RegisterDto;
 import com.project.cv.Dto.UserDto;
-import com.project.cv.Model.Gender;
-import com.project.cv.Model.Role;
-import com.project.cv.Model.User;
+import com.project.cv.Model.*;
+import com.project.cv.Repository.CandidateRepository;
+import com.project.cv.Repository.CompanyRepository;
 import com.project.cv.Repository.RoleRepository;
 import com.project.cv.Repository.UserRepository;
 import com.project.cv.Service.UserService;
@@ -21,6 +22,10 @@ public class UserServiceImpl implements UserService {
     @Autowired
     UserRepository userRepository;
     @Autowired
+    CompanyRepository companyRepository;
+    @Autowired
+    CandidateRepository candidateRepository;
+    @Autowired
     private BCryptPasswordEncoder passwordEncoder;
     @Override
     public boolean addRegisterUser(RegisterDto registerDto) {
@@ -34,18 +39,22 @@ public class UserServiceImpl implements UserService {
             user.setPassword(passwordEncoder.encode(registerDto.getPassword()));
             user.setFname(registerDto.getFname());
             user.setImage(registerDto.getImage());
-            user.setBirthday(registerDto.getBirthday());
-
-            if (registerDto.getGender().equals("male")) {
-                user.setGender(Gender.male.getGender());
-            } else if (registerDto.getGender().equals("female")) {
-                user.setGender(Gender.female.getGender());
-            } else {
-                user.setGender(Gender.other.getGender());
-            }
+            user.setEmail(registerDto.getEmail());
             user.setPhone(registerDto.getPhone());
             user.setWebsite(registerDto.getWebsite());
             user.addRole(role);
+
+            if (registerDto.getRoleName().equals("company")){
+                Company company=new Company();
+                company.setCompany(user);
+                company.setFoundedAt(registerDto.getBirthday());
+                companyRepository.save(company);
+            } else if (registerDto.getRoleName().equals("candidate")) {
+                Candidates candidates=new Candidates();
+                candidates.setCandidate(user);
+                candidates.setBirthday(registerDto.getBirthday());
+                candidateRepository.save(candidates);
+            }
             userRepository.save(user);
             return true;
         }catch (IllegalArgumentException e){
@@ -60,15 +69,7 @@ public class UserServiceImpl implements UserService {
         User user = userRepository.findUserByName(authentication.getName());
         user.setFname(userDto.getFname());
         user.setImage(userDto.getImage());
-        user.setBirthday(userDto.getBirthday());
-
-        if (userDto.getGender().equals("male")) {
-            user.setGender(Gender.male.getGender());
-        } else if (userDto.getGender().equals("female")) {
-            user.setGender(Gender.female.getGender());
-        } else {
-            user.setGender(Gender.other.getGender());
-        }
+        user.setEmail(userDto.getEmail());
         user.setPhone(userDto.getPhone());
         user.setWebsite(userDto.getWebsite());
         user.setAddress(userDto.getAddress());
@@ -80,4 +81,5 @@ public class UserServiceImpl implements UserService {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         return userRepository.findUserByName(authentication.getName());
     }
+
 }

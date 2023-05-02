@@ -28,13 +28,7 @@ public class User {
     private String password;
     private String fname;
     private String image;
-    private Date birthday;
-    public String getFormattedDate() {
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-        String formattedDate = formatter.format(this.birthday);
-        return formattedDate;
-    }
-    private String gender;
+    private String email;
     private String phone;
     private String website;
     @OneToOne
