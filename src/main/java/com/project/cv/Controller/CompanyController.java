@@ -1,16 +1,8 @@
 package com.project.cv.Controller;
 
-import com.project.cv.Dto.AddressDto;
-import com.project.cv.Dto.CreateCvDto;
-import com.project.cv.Dto.RecruitDto;
-import com.project.cv.Dto.UserDto;
-import com.project.cv.Model.Address;
-import com.project.cv.Model.Cv;
-import com.project.cv.Model.Recruit;
-import com.project.cv.Model.User;
-import com.project.cv.Service.AddressService;
-import com.project.cv.Service.RecruitService;
-import com.project.cv.Service.UserService;
+import com.project.cv.Dto.*;
+import com.project.cv.Model.*;
+import com.project.cv.Service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,6 +18,12 @@ public class CompanyController {
     RecruitService recruitService;
     @Autowired
     AddressService addressService;
+    @Autowired
+    CompanyService companyService;
+    @Autowired
+    CandidateService candidateService;
+    @Autowired
+    ApplyService applyService;
 
     @PostMapping("/create/recruit")
     public Recruit createRecruit(@RequestBody RecruitDto recruitDto){
@@ -55,8 +53,29 @@ public class CompanyController {
     public User updateProfile(@RequestBody UserDto userDto){
         return userService.updateUser(userDto);
     }
+    @PostMapping("/update/company")
+    public Company updateCompany(@RequestBody CompanyDto companyDto){
+        return companyService.updateCompany(companyDto);
+    }
     @GetMapping("/profile")
     public User getProfile(){
         return userService.getProfile();
+    }
+    @GetMapping("/company/{company_id}")
+    public Candidates getCandidateById(@PathVariable int candidate_id){
+        return candidateService.getCandidateById(candidate_id);
+    }
+    @GetMapping("/information")
+    public Company getInformationCompany()
+    {
+        return companyService.getInformationCompany();
+    }
+    @GetMapping("/apply/recruit/{recruit_id}")
+    public int countApplyCV(@PathVariable int recruit_id){
+        return applyService.countApplyCv(recruit_id);
+    }
+    @GetMapping("/cv/apply/recruit/{recruit_id}")
+    public List<Cv> allCvApplyByRecruit(@PathVariable int recruit_id){
+        return applyService.allCvApplyByRecruitId(recruit_id);
     }
 }
