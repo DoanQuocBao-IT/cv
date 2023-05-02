@@ -4,13 +4,8 @@ import com.project.cv.Dto.AddressDto;
 import com.project.cv.Dto.CandidateDto;
 import com.project.cv.Dto.CreateCvDto;
 import com.project.cv.Dto.UserDto;
-import com.project.cv.Model.Address;
-import com.project.cv.Model.Candidates;
-import com.project.cv.Model.Cv;
-import com.project.cv.Model.User;
-import com.project.cv.Service.AddressService;
-import com.project.cv.Service.CvService;
-import com.project.cv.Service.UserService;
+import com.project.cv.Model.*;
+import com.project.cv.Service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,6 +21,12 @@ public class CandidateController {
     CvService cvService;
     @Autowired
     AddressService addressService;
+    @Autowired
+    CandidateService candidateService;
+    @Autowired
+    CompanyService companyService;
+    @Autowired
+    ApplyService applyService;
 
     @PostMapping("/create/cv")
     public Cv createCV(@RequestBody CreateCvDto createCvDto){
@@ -55,8 +56,25 @@ public class CandidateController {
     public User updateProfile(@RequestBody UserDto userDto){
         return userService.updateUser(userDto);
     }
+    @PostMapping("/update/candidate")
+    public Candidates updateCandidate(@RequestBody CandidateDto candidateDto){
+        return candidateService.updateCandidate(candidateDto);
+    }
     @GetMapping("/profile")
     public User getProfile(){
         return userService.getProfile();
+    }
+    @GetMapping("/company/{company_id}")
+    public Company getCompanyById(@PathVariable int company_id){
+        return companyService.getCompanyById(company_id);
+    }
+    @GetMapping("/information")
+    public Candidates getInformationCandidate()
+    {
+        return candidateService.getProfileCandidate();
+    }
+    @GetMapping("/apply/{recruit_id}")
+    public Apply applyCvToRecruit(@PathVariable int recruit_id){
+        return applyService.applyCvToRecruit(recruit_id);
     }
 }
