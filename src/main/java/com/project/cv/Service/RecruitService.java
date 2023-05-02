@@ -1,5 +1,6 @@
 package com.project.cv.Service;
 
+import com.project.cv.Dto.RecruitDetailDto;
 import com.project.cv.Dto.RecruitDto;
 import com.project.cv.Model.Recruit;
 
@@ -9,5 +10,6 @@ public interface RecruitService {
     Recruit addRecruit(RecruitDto recruitDto);
     Recruit updateRecruit(int id, RecruitDto recruitDto);
     List<Recruit> findAllRecruitForCompany();
-    List<Recruit> findAllRecruit();
+    List<RecruitDetailDto> findAllRecruit();
+    Recruit findRecruitById(int recruit_id);
 }

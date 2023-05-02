@@ -1,19 +1,20 @@
 package com.project.cv.Service.ServiceImpl;
 
+import com.project.cv.Dto.RecruitDetailDto;
 import com.project.cv.Dto.RecruitDto;
-import com.project.cv.Model.Experience;
-import com.project.cv.Model.Gender;
-import com.project.cv.Model.Recruit;
-import com.project.cv.Model.User;
+import com.project.cv.Model.*;
+import com.project.cv.Repository.CompanyRepository;
 import com.project.cv.Repository.RecruitRepository;
 import com.project.cv.Repository.UserRepository;
 import com.project.cv.Service.RecruitService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class RecruitServiceImpl implements RecruitService {
@@ -21,12 +22,15 @@ public class RecruitServiceImpl implements RecruitService {
     UserRepository userRepository;
     @Autowired
     RecruitRepository recruitRepository;
+    @Autowired
+    CompanyRepository companyRepository;
     @Override
     public Recruit addRecruit(RecruitDto recruitDto) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         User company = userRepository.findUserByName(authentication.getName());
+        Company companies=companyRepository.findByCompany(company);
         Recruit recruit=new Recruit();
-        recruit.setUser(company);
+        recruit.setCompany(companies);
         recruit.setProfession(recruitDto.getProfession());
         recruit.setSalary(recruitDto.getSalary());
         recruit.setPosition(recruitDto.getPosition());
@@ -112,11 +116,19 @@ public class RecruitServiceImpl implements RecruitService {
     public List<Recruit> findAllRecruitForCompany() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         User user = userRepository.findUserByName(authentication.getName());
-        return recruitRepository.findByUser(user);
+        Company company=companyRepository.findByCompany(user);
+        return recruitRepository.findByCompany(company);
     }
 
     @Override
-    public List<Recruit> findAllRecruit() {
-        return recruitRepository.findAll();
+    public List<RecruitDetailDto> findAllRecruit() {
+        List<Recruit> recruits=recruitRepository.findAll();
+        ModelMapper modelMapper=new ModelMapper();
+        return recruits.stream().map(recruit -> modelMapper.map(recruit, RecruitDetailDto.class)).collect(Collectors.toList());
+    }
+
+    @Override
+    public Recruit findRecruitById(int recruit_id) {
+        return recruitRepository.findById(recruit_id).get();
     }
 }

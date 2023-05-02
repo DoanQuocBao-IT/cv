@@ -21,7 +21,7 @@ public class Recruit {
     private Integer id;
     @ManyToOne
     @JoinColumn(name = "company_id")
-    private User user;
+    private Company company;
     private String profession;
     private String salary;
     private String position;

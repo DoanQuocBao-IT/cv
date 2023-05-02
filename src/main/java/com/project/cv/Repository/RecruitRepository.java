@@ -1,5 +1,6 @@
 package com.project.cv.Repository;
 
+import com.project.cv.Model.Company;
 import com.project.cv.Model.Recruit;
 import com.project.cv.Model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -9,5 +10,5 @@ import java.util.List;
 
 @Repository
 public interface RecruitRepository extends JpaRepository<Recruit,Integer> {
-    List<Recruit> findByUser(User user);
+    List<Recruit> findByCompany(Company company);
 }
