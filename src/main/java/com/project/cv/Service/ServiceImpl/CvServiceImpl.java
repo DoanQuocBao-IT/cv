@@ -11,6 +11,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CvServiceImpl implements CvService {
     @Autowired
@@ -47,5 +49,10 @@ public class CvServiceImpl implements CvService {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         User user = userRepository.findUserByName(authentication.getName());
         return cvRepository.findByUser(user);
+    }
+
+    @Override
+    public List<Cv> findAllCv() {
+        return cvRepository.findAll();
     }
 }
