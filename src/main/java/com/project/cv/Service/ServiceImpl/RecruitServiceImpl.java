@@ -109,9 +109,14 @@ public class RecruitServiceImpl implements RecruitService {
     }
 
     @Override
-    public List<Recruit> findAllRecruit() {
+    public List<Recruit> findAllRecruitForCompany() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         User user = userRepository.findUserByName(authentication.getName());
         return recruitRepository.findByUser(user);
+    }
+
+    @Override
+    public List<Recruit> findAllRecruit() {
+        return recruitRepository.findAll();
     }
 }

@@ -8,5 +8,6 @@ import java.util.List;
 public interface RecruitService {
     Recruit addRecruit(RecruitDto recruitDto);
     Recruit updateRecruit(int id, RecruitDto recruitDto);
+    List<Recruit> findAllRecruitForCompany();
     List<Recruit> findAllRecruit();
 }
