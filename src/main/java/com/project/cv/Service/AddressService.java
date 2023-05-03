@@ -8,5 +8,5 @@ import java.util.List;
 public interface AddressService {
     Address createAddress(AddressDto addressDto);
     Address updateAddress(int address_id,AddressDto addressDto);
-    List<Address> allAddressForUser();
+    List<AddressDto> allAddressForUser();
 }

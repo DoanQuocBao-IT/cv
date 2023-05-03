@@ -6,12 +6,14 @@ import com.project.cv.Model.User;
 import com.project.cv.Repository.AddressRepository;
 import com.project.cv.Repository.UserRepository;
 import com.project.cv.Service.AddressService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class AddressServiceImpl implements AddressService {
@@ -40,9 +42,11 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
-    public List<Address> allAddressForUser() {
+    public List<AddressDto> allAddressForUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         User user = userRepository.findUserByName(authentication.getName());
-        return addressRepository.findByUser(user);
+        List<Address> addresses=addressRepository.findByUser(user);
+        ModelMapper modelMapper=new ModelMapper();
+        return addresses.stream().map(address -> modelMapper.map(address,AddressDto.class)).collect(Collectors.toList());
     }
 }

@@ -10,4 +10,5 @@ import java.util.List;
 @Repository
 public interface AddressRepository extends JpaRepository<Address,Integer> {
     List<Address> findByUser(User user);
+    Address findByCity(String city);
 }
