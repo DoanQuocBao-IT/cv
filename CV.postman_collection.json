@@ -1,0 +1,1069 @@
+{
+	"info": {
+		"_postman_id": "46b853a9-78c6-4da7-8f70-357950d5b683",
+		"name": "CV",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23897068"
+	},
+	"item": [
+		{
+			"name": "Authentication Controller",
+			"item": [
+				{
+					"name": "localhost:8080/auth/register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"bao6\",\r\n    \"password\":\"12345\",\r\n    \"fname\":\"Nguyen Van C\",\r\n    \"image\":\"https://th.bing.com/th/id/OIP.fdgzoi3CudQNGJFWCwIr2QHaHa?w=157&h=180&c=7&r=0&o=5&pid=1.7\",\r\n    \"email\":\"nguyenvanc@gmail.com\",\r\n    \"phone\":\"0963746533\",\r\n    \"website\":\"https://github.com/NguyenVanC\",\r\n    \"birthday\":\"2003-08-02\",\r\n    \"roleName\":\"candidate\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/auth/register",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						},
+						"description": "Chức năng đăng kí tài khoản cho người dùng mới , người dùng cần cập các thông tin cá nhân và vai trò trong hệ thống là seller, shipper hoặc buybuyer. Nếu ngươid dùng đăng kí người dùng seller hoặc shipper thì phải chờ admin xác nhận tài khoản và gởi thư qua mail."
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/auth/login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"bao1\",\r\n    \"password\":\"12345\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/auth/login",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						},
+						"description": "Chức năng đăng nhập tài khoản, người dùng cần nhập username và password để đăng nhập tài khoản"
+					},
+					"response": []
+				}
+			],
+			"description": "StartFragment\n\nSpring Security is a powerful authentication and authorization framework that provides secure login functionality for applications. With Spring Security, users can log in using their username and password, and their credentials are securely encrypted for protection. This ensures that only authorized users can access the application, providing an extra layer of security for your application.\n\nEndFragment"
+		},
+		{
+			"name": "Candidate Controller",
+			"item": [
+				{
+					"name": "CV",
+					"item": [
+						{
+							"name": "Create CV",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW82Iiwicm9sZSI6ImNhbmRpZGF0ZSIsImV4cCI6MTY4MzQ2NjAwNSwiaWF0IjoxNjgzMTA2MDA1fQ.TPh1KSkz6-8lt7X8tuckeyX5D3YlmMuGbWewF__GBQo",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"profession\":\"Information Technology\",\r\n    \"position\":\"Fresher ReactJS\",\r\n    \"experience\":\"1year\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/api/candidate/create/cv",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"candidate",
+										"create",
+										"cv"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update CV",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW8xIiwicm9sZSI6ImNhbmRpZGF0ZSIsImV4cCI6MTY4MzM5MzExOSwiaWF0IjoxNjgzMDMzMTE5fQ.VJuzTKSmpVj2JZtcivxH1OBF7d2Jdyqv5n2im1FTWQ4",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"profession\":\"Marketing\",\r\n    \"position\":\"Fresher\",\r\n    \"experience\":\"1 year\",\r\n    \"address\":{\r\n        \"id\":2\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/api/candidate/update/cv/1",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"candidate",
+										"update",
+										"cv",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get CV For Candidate",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW82Iiwicm9sZSI6ImNhbmRpZGF0ZSIsImV4cCI6MTY4MzQ2NjAwNSwiaWF0IjoxNjgzMTA2MDA1fQ.TPh1KSkz6-8lt7X8tuckeyX5D3YlmMuGbWewF__GBQo",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/api/candidate/all/cv",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"candidate",
+										"all",
+										"cv"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Address",
+					"item": [
+						{
+							"name": "Create Address",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW82Iiwicm9sZSI6ImNhbmRpZGF0ZSIsImV4cCI6MTY4MzQ2NjAwNSwiaWF0IjoxNjgzMTA2MDA1fQ.TPh1KSkz6-8lt7X8tuckeyX5D3YlmMuGbWewF__GBQo",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"city\":\"Ho Chi Minh\",\r\n    \"address\":\"25 Bac Ai, Binh Tho, Thu Duc\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/api/candidate/create/address",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"candidate",
+										"create",
+										"address"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Address",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW8zIiwicm9sZSI6ImNhbmRpZGF0ZSIsImV4cCI6MTY4MzQwMDQzNywiaWF0IjoxNjgzMDQwNDM3fQ.A5wHn30aBX1CY0JtxnCzkS5l3KdvMRcYo8ZyeMIu0FA",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"city\":\"Ha Noi\",\r\n    \"address\":\"73 Hai Ba Trung, Hoan Kiem\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/api/candidate/update/address/5",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"candidate",
+										"update",
+										"address",
+										"5"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Address For Candidate",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW82Iiwicm9sZSI6ImNhbmRpZGF0ZSIsImV4cCI6MTY4MzQ2NjAwNSwiaWF0IjoxNjgzMTA2MDA1fQ.TPh1KSkz6-8lt7X8tuckeyX5D3YlmMuGbWewF__GBQo",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/api/candidate/all/address",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"candidate",
+										"all",
+										"address"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Profile User",
+					"item": [
+						{
+							"name": "Update profile",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW82Iiwicm9sZSI6ImNhbmRpZGF0ZSIsImV4cCI6MTY4MzQ2NjAwNSwiaWF0IjoxNjgzMTA2MDA1fQ.TPh1KSkz6-8lt7X8tuckeyX5D3YlmMuGbWewF__GBQo",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"fname\":\"Nguyen Van C\",\r\n    \"image\":\"https://th.bing.com/th/id/OIP.fdgzoi3CudQNGJFWCwIr2QHaHa?w=157&h=180&c=7&r=0&o=5&pid=1.7\",\r\n    \"email\":\"nguyenvanc@gmail.com\",\r\n    \"phone\":\"0963746533\",\r\n    \"website\":\"https://github.com/NguyenVanC\",\r\n    \"address\":{\r\n        \"id\":8\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/api/candidate/update/profile",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"candidate",
+										"update",
+										"profile"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Profile",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW82Iiwicm9sZSI6ImNhbmRpZGF0ZSIsImV4cCI6MTY4MzQ2NjAwNSwiaWF0IjoxNjgzMTA2MDA1fQ.TPh1KSkz6-8lt7X8tuckeyX5D3YlmMuGbWewF__GBQo",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/api/candidate/profile",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"candidate",
+										"profile"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Profile Candidate",
+					"item": [
+						{
+							"name": "Update Candidate",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW82Iiwicm9sZSI6ImNhbmRpZGF0ZSIsImV4cCI6MTY4MzQ2NjAwNSwiaWF0IjoxNjgzMTA2MDA1fQ.TPh1KSkz6-8lt7X8tuckeyX5D3YlmMuGbWewF__GBQo",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"birthday\":\"2001-09-09\",\r\n    \"gender\":\"male\",\r\n    \"introduce\":\"I am student in HCMUTE\",\r\n    \"hobby\":\"sport,singer\",\r\n    \"certificate\":\"Toeic 800\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/api/candidate/update/candidate",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"candidate",
+										"update",
+										"candidate"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Information Candidate",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW82Iiwicm9sZSI6ImNhbmRpZGF0ZSIsImV4cCI6MTY4MzQ2NjAwNSwiaWF0IjoxNjgzMTA2MDA1fQ.TPh1KSkz6-8lt7X8tuckeyX5D3YlmMuGbWewF__GBQo",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/api/candidate/information",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"candidate",
+										"information"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Apply CV To Recruit",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW82Iiwicm9sZSI6ImNhbmRpZGF0ZSIsImV4cCI6MTY4MzQ2NjAwNSwiaWF0IjoxNjgzMTA2MDA1fQ.TPh1KSkz6-8lt7X8tuckeyX5D3YlmMuGbWewF__GBQo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/candidate/apply/4",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"candidate",
+								"apply",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Company Controller",
+			"item": [
+				{
+					"name": "Recruit",
+					"item": [
+						{
+							"name": "Create Recruit",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW81Iiwicm9sZSI6ImNvbXBhbnkiLCJleHAiOjE2ODM0NjUyNjIsImlhdCI6MTY4MzEwNTI2Mn0.bjNnXy3XLPaF1AFQAqdVA_vV0KDOoxYaoLvLMiaKoq4",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"profession\":\"Information Technology\",\r\n    \"salary\":\"Tới 40 triệu\",\r\n    \"position\":\" Front - End Developer ( Vuejs )\",\r\n    \"inventory\":5,\r\n    \"gender\":\"none\",\r\n    \"experience\":\"3year\",\r\n    \"responsibilities\":\"Tham gia phân tích nghiệp vụ để định hướng sớm về Solution hoặc đưa ra các đề xuất điều chỉnh nghiệp vụ để tăng tính khả thi của phần mềm/ứng dụng/hệ thống CNTT\",\r\n    \"qualifications\":\"Tốt nghiệp Đại học chuyên ngành Công nghệ thông tin, khoa học máy tính hoặc các ngành liên quan\",\r\n    \"interests\":\"Môi trường làm việc thân thiện, năng động, có cơ hội phát triển bản thân và thăng tiến.\",\r\n    \"address\":{\r\n        \"id\":7\r\n    },\r\n    \"toDate\":\"2023-05-19\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/api/company/create/recruit",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"company",
+										"create",
+										"recruit"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Recruit",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW8zIiwicm9sZSI6ImNvbXBhbnkiLCJleHAiOjE2ODM0NjI3MjYsImlhdCI6MTY4MzEwMjcyNn0.Dn8BSUfE7lhtsCKgo37XmpRf5HuvAskyH1LD_zajG6g",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"profession\":\"Information Technology\",\r\n    \"salary\":\"Thoả thuận\",\r\n    \"position\":\" Lập Trình Viên\",\r\n    \"inventory\":30,\r\n    \"gender\":\"none\",\r\n    \"experience\":\"2year\",\r\n    \"responsibilities\":\"Thiết kế các phần mềm, website quản trị doanh nghiệp (ERP) cho các khách hàng của Nhật\",\r\n    \"qualifications\":\"Có kinh nghiệm lập trình 1 trong các ngôn ngữ: 1. C# MVC/ ASP.NET, 2. NodeJs/ ReactJs, 3. Python (biết sử dụng Revit là một lợi thế)\",\r\n    \"interests\":\"Lương khởi điểm cao: Dựa vào năng lực, kinh nghiệm\",\r\n    \"address\":{\r\n        \"id\":5\r\n    },\r\n    \"toDate\":\"2023-05-25\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/api/company/update/recruit/3",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"company",
+										"update",
+										"recruit",
+										"3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Recruit For Company",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW8xIiwicm9sZSI6ImNvbXBhbnkiLCJleHAiOjE2ODM0NjYzOTUsImlhdCI6MTY4MzEwNjM5NX0.6hokm4s_jQ7_a9JndfVLBOcgBncwFnlDU9468QZwhD8",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/api/company/all/recruit",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"company",
+										"all",
+										"recruit"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Address",
+					"item": [
+						{
+							"name": "Create Address",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW81Iiwicm9sZSI6ImNvbXBhbnkiLCJleHAiOjE2ODM0NjUyNjIsImlhdCI6MTY4MzEwNTI2Mn0.bjNnXy3XLPaF1AFQAqdVA_vV0KDOoxYaoLvLMiaKoq4",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"city\":\"Ha Noi\",\r\n    \"address\":\"Tòa 319 Bộ Quốc Phòng, Số 63 Lê Văn Lương, Trung Hòa, Cầu Giấy\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/api/company/create/address",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"company",
+										"create",
+										"address"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Address Copy",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW8yIiwicm9sZSI6ImNvbXBhbnkiLCJleHAiOjE2ODMzMTk4NTUsImlhdCI6MTY4Mjk1OTg1NX0.SfORT6vMzLH80KUFaOXjBtP7uO6jOVplxM5PjOS2eMM",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"city\":\"BR-VT\",\r\n    \"address\":\"73 Hai Ba Trung, Hoan Kiem\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/api/company/update/address/5",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"company",
+										"update",
+										"address",
+										"5"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Address For Candidate Copy",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW81Iiwicm9sZSI6ImNvbXBhbnkiLCJleHAiOjE2ODM0NjUyNjIsImlhdCI6MTY4MzEwNTI2Mn0.bjNnXy3XLPaF1AFQAqdVA_vV0KDOoxYaoLvLMiaKoq4",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/api/company/all/address",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"company",
+										"all",
+										"address"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Profile User",
+					"item": [
+						{
+							"name": "Update profile",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW81Iiwicm9sZSI6ImNvbXBhbnkiLCJleHAiOjE2ODM0NjUyNjIsImlhdCI6MTY4MzEwNTI2Mn0.bjNnXy3XLPaF1AFQAqdVA_vV0KDOoxYaoLvLMiaKoq4",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"fname\":\"Công ty Cổ phần Hệ thống Công nghệ ETC\",\r\n    \"image\":\"https://cdn.topcv.vn/80/company_logos/hgTiOn9OZKDjJfARGkwrqczYVDkWC2it_1673406018____c31b182fa12ed20bae653cad41e00185.jpg\",\r\n    \"email\":\"etc@gmail.com\",\r\n    \"phone\":\"0834784311\",\r\n    \"website\":\"https://www.topcv.vn/cong-ty/cong-ty-co-phan-he-thong-cong-nghe-etc/70478.html\",\r\n    \"address\":{\r\n        \"id\":7\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/api/company/update/profile",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"company",
+										"update",
+										"profile"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Profile Company",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW81Iiwicm9sZSI6ImNvbXBhbnkiLCJleHAiOjE2ODM0NjUyNjIsImlhdCI6MTY4MzEwNTI2Mn0.bjNnXy3XLPaF1AFQAqdVA_vV0KDOoxYaoLvLMiaKoq4",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/api/company/profile",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"company",
+										"profile"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Profile Company",
+					"item": [
+						{
+							"name": "Update Company",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW81Iiwicm9sZSI6ImNvbXBhbnkiLCJleHAiOjE2ODM0NjUyNjIsImlhdCI6MTY4MzEwNTI2Mn0.bjNnXy3XLPaF1AFQAqdVA_vV0KDOoxYaoLvLMiaKoq4",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"foundedAt\":\"2013-07-05\",\r\n    \"information\":\"Công ty Cổ phần Hệ thống Công nghệ ETC (gọi tắt là công ty ETC), là một trong những doanh nghiệp hàng đầu trong lĩnh vực Công nghệ thông tin, đi tiên phong trong việc cung cấp các giải pháp CNTT tiên tiến và hiện đại.\",\r\n    \"field\":\"Technology\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/api/company/update/company",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"company",
+										"update",
+										"company"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Information Company",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW81Iiwicm9sZSI6ImNvbXBhbnkiLCJleHAiOjE2ODM0NjUyNjIsImlhdCI6MTY4MzEwNTI2Mn0.bjNnXy3XLPaF1AFQAqdVA_vV0KDOoxYaoLvLMiaKoq4",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/api/company/information",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"company",
+										"information"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Count Apply CV",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW8xIiwicm9sZSI6ImNvbXBhbnkiLCJleHAiOjE2ODM0NjYzOTUsImlhdCI6MTY4MzEwNjM5NX0.6hokm4s_jQ7_a9JndfVLBOcgBncwFnlDU9468QZwhD8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/company/apply/recruit/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"company",
+								"apply",
+								"recruit",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Cv Apply To Recruit",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW8xIiwicm9sZSI6ImNvbXBhbnkiLCJleHAiOjE2ODM0NjYzOTUsImlhdCI6MTY4MzEwNjM5NX0.6hokm4s_jQ7_a9JndfVLBOcgBncwFnlDU9468QZwhD8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/company/cv/apply/recruit/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"company",
+								"cv",
+								"apply",
+								"recruit",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User Controller",
+			"item": [
+				{
+					"name": "Get Company",
+					"item": [
+						{
+							"name": "Get company by User Id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/api/appcv/company/2",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"appcv",
+										"company",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "All companies",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/api/appcv/all/company",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"appcv",
+										"all",
+										"company"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Find Job",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/appcv/job?search=Vuejs",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"appcv",
+								"job"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "Vuejs"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all recruit",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/appcv/recruit",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"appcv",
+								"recruit"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get recruit by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/appcv/recruit/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"appcv",
+								"recruit",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
