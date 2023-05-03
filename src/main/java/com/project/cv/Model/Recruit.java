@@ -7,6 +7,10 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -37,4 +41,11 @@ public class Recruit {
     @JoinColumn(name = "address_id")
     @JsonIgnoreProperties("user")
     private Address address;
+    private Date fromDate;
+    private Date toDate;
+    public long getCountdown(){
+        LocalDate localFromDate = (new Date()).toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        LocalDate localToDate = this.toDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        return ChronoUnit.DAYS.between(localFromDate, localToDate);
+    }
 }

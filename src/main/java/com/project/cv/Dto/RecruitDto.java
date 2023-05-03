@@ -4,6 +4,8 @@ import com.project.cv.Model.Address;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Date;
+
 @Getter
 @Setter
 public class RecruitDto {
@@ -18,4 +20,5 @@ public class RecruitDto {
     private String qualifications;
     private String interests;
     private Address address;
+    private Date toDate;
 }

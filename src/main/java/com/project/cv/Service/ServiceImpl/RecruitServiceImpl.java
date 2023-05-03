@@ -3,6 +3,7 @@ package com.project.cv.Service.ServiceImpl;
 import com.project.cv.Dto.RecruitDetailDto;
 import com.project.cv.Dto.RecruitDto;
 import com.project.cv.Model.*;
+import com.project.cv.Repository.AddressRepository;
 import com.project.cv.Repository.CompanyRepository;
 import com.project.cv.Repository.RecruitRepository;
 import com.project.cv.Repository.UserRepository;
@@ -13,6 +14,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,6 +26,8 @@ public class RecruitServiceImpl implements RecruitService {
     RecruitRepository recruitRepository;
     @Autowired
     CompanyRepository companyRepository;
+    @Autowired
+    AddressRepository addressRepository;
     @Override
     public Recruit addRecruit(RecruitDto recruitDto) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -67,6 +71,8 @@ public class RecruitServiceImpl implements RecruitService {
         recruit.setQualifications(recruitDto.getQualifications());
         recruit.setInterests(recruitDto.getInterests());
         recruit.setAddress(recruitDto.getAddress());
+        recruit.setFromDate(new Date());
+        recruit.setToDate(recruitDto.getToDate());
         return recruitRepository.save(recruit);
     }
 
@@ -109,6 +115,7 @@ public class RecruitServiceImpl implements RecruitService {
         recruit.setQualifications(recruitDto.getQualifications());
         recruit.setInterests(recruitDto.getInterests());
         recruit.setAddress(recruitDto.getAddress());
+        recruit.setToDate(recruitDto.getToDate());
         return recruitRepository.save(recruit);
     }
 
@@ -123,6 +130,22 @@ public class RecruitServiceImpl implements RecruitService {
     @Override
     public List<RecruitDetailDto> findAllRecruit() {
         List<Recruit> recruits=recruitRepository.findAll();
+        ModelMapper modelMapper=new ModelMapper();
+        return recruits.stream().map(recruit -> modelMapper.map(recruit, RecruitDetailDto.class)).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<RecruitDetailDto> findAllRecruitBySearch(String search) {
+        List<Recruit> recruits=recruitRepository.findByAddressCity(search);
+        if (recruits.isEmpty()){
+            recruits=recruitRepository.findByCompanyCompanyFnameContainingIgnoreCase(search);
+        }
+        if (recruits.isEmpty()){
+            recruits=recruitRepository.findByProfessionContainingIgnoreCase(search);
+        }
+        if (recruits.isEmpty()){
+            recruits=recruitRepository.findByPositionContainingIgnoreCase(search);
+        }
         ModelMapper modelMapper=new ModelMapper();
         return recruits.stream().map(recruit -> modelMapper.map(recruit, RecruitDetailDto.class)).collect(Collectors.toList());
     }
