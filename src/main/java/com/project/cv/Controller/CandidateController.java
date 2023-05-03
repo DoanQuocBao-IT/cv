@@ -41,7 +41,7 @@ public class CandidateController {
         return cvService.allCV();
     }
     @GetMapping("/all/address")
-    public List<Address> findAllAddressForUser(){
+    public List<AddressDto> findAllAddressForUser(){
         return addressService.allAddressForUser();
     }
     @PostMapping("/create/address")
