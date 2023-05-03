@@ -9,5 +9,4 @@ public interface CvService {
     Cv addCV(CreateCvDto cv);
     Cv updateCV(int id, CreateCvDto cvDto);
     Cv allCV();
-    List<Cv> findAllCv();
 }
