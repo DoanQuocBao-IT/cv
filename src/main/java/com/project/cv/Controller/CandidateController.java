@@ -1,9 +1,6 @@
 package com.project.cv.Controller;
 
-import com.project.cv.Dto.AddressDto;
-import com.project.cv.Dto.CandidateDto;
-import com.project.cv.Dto.CreateCvDto;
-import com.project.cv.Dto.UserDto;
+import com.project.cv.Dto.*;
 import com.project.cv.Model.*;
 import com.project.cv.Service.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,5 +73,9 @@ public class CandidateController {
     @GetMapping("/apply/{recruit_id}")
     public Apply applyCvToRecruit(@PathVariable int recruit_id){
         return applyService.applyCvToRecruit(recruit_id);
+    }
+    @GetMapping("/recruit/apply")
+    public List<RecruitDetailDto> findAllRecruitApply(){
+        return applyService.allRecruitApply();
     }
 }

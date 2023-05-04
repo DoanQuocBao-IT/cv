@@ -1,14 +1,17 @@
 package com.project.cv.Service.ServiceImpl;
 
+import com.project.cv.Dto.RecruitDetailDto;
 import com.project.cv.Model.*;
 import com.project.cv.Repository.*;
 import com.project.cv.Service.ApplyService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ApplyServiceImpl implements ApplyService {
@@ -44,5 +47,15 @@ public class ApplyServiceImpl implements ApplyService {
     @Override
     public List<Cv> allCvApplyByRecruitId(int recruit_id) {
         return applyRepository.allCVApplyByRecruitId(recruit_id);
+    }
+
+    @Override
+    public List<RecruitDetailDto> allRecruitApply() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        User user = userRepository.findUserByName(authentication.getName());
+        Candidates candidates=candidateRepository.findByCandidate(user);
+        List<Recruit> recruits=applyRepository.findRecruitsByCvCandidates(candidates);
+        ModelMapper modelMapper=new ModelMapper();
+        return recruits.stream().map(recruit -> modelMapper.map(recruit, RecruitDetailDto.class)).collect(Collectors.toList());
     }
 }
