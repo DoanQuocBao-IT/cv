@@ -8,4 +8,5 @@ import lombok.Setter;
 public class CompaniesDto {
     private Integer id;
     private UsersDto company;
+    private int inventory_job;
 }

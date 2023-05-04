@@ -32,5 +32,5 @@ public class Company {
     }
     private String field;
     private String information;
-
+    private int inventory_job;
 }

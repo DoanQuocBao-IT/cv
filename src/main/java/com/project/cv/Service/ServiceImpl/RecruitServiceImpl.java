@@ -33,6 +33,8 @@ public class RecruitServiceImpl implements RecruitService {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         User company = userRepository.findUserByName(authentication.getName());
         Company companies=companyRepository.findByCompany(company);
+        companies.setInventory_job(companies.getInventory_job()+1);
+        companyRepository.save(companies);
         Recruit recruit=new Recruit();
         recruit.setCompany(companies);
         recruit.setProfession(recruitDto.getProfession());
@@ -73,6 +75,7 @@ public class RecruitServiceImpl implements RecruitService {
         recruit.setAddress(recruitDto.getAddress());
         recruit.setFromDate(new Date());
         recruit.setToDate(recruitDto.getToDate());
+
         return recruitRepository.save(recruit);
     }
 
