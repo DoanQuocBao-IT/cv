@@ -11,4 +11,5 @@ public interface CompanyService {
     Company getCompanyById(int company_id);
     Company updateCompany(CompanyDto companyDto);
     List<CompaniesDto> findAllCompany();
+    List<CompaniesDto> findTop6Company();
 }

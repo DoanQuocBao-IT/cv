@@ -52,4 +52,11 @@ public class CompanyServiceImpl implements CompanyService {
         ModelMapper modelMapper=new ModelMapper();
         return companies.stream().map(company -> modelMapper.map(company, CompaniesDto.class)).collect(Collectors.toList());
     }
+
+    @Override
+    public List<CompaniesDto> findTop6Company() {
+        List<Company> companies=companyRepository.findTop6ByOrderByInventoryJobDesc();
+        ModelMapper modelMapper=new ModelMapper();
+        return companies.stream().map(company -> modelMapper.map(company, CompaniesDto.class)).collect(Collectors.toList());
+    }
 }

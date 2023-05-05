@@ -48,6 +48,11 @@ public class UserController {
     public List<CompaniesDto>  findAllCompanies(){
         return companyService.findAllCompany();
     }
+    @GetMapping("/top6/company")
+    public List<CompaniesDto>  findTop6CompanyNewest(){
+        return companyService.findTop6Company();
+    }
+
     @GetMapping("/job")
     public List<RecruitDetailDto> findByCity(@RequestParam String search){
         return recruitService.findAllRecruitBySearch(search);
