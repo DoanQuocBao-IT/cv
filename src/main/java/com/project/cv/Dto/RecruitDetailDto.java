@@ -8,7 +8,9 @@ import lombok.Setter;
 public class RecruitDetailDto {
     private int id;
     private CompaniesDto company;
+    private String salary;
     private String position;
     private AddressDetailDto address;
     private String experience;
+    private long countdown;
 }

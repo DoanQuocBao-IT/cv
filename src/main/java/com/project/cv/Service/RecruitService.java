@@ -11,6 +11,7 @@ public interface RecruitService {
     Recruit updateRecruit(int id, RecruitDto recruitDto);
     List<Recruit> findAllRecruitForCompany();
     List<RecruitDetailDto> findAllRecruit();
+    List<RecruitDetailDto> findTop6RecruitNewest();
     List<RecruitDetailDto> findAllRecruitBySearch(String search);
     Recruit findRecruitById(int recruit_id);
 }

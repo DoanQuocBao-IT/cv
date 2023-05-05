@@ -32,6 +32,10 @@ public class UserController {
     public List<RecruitDetailDto> findAllRecruit(){
         return recruitService.findAllRecruit();
     }
+    @GetMapping("/top6/recruit")
+    public List<RecruitDetailDto> findTop6Recruit(){
+        return recruitService.findTop6RecruitNewest();
+    }
     @GetMapping("/recruit/{recruit_id}")
     public Recruit findRecruitById(@PathVariable int recruit_id){
         return recruitService.findRecruitById(recruit_id);

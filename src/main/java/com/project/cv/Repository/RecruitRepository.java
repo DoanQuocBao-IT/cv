@@ -17,4 +17,5 @@ public interface RecruitRepository extends JpaRepository<Recruit,Integer> {
     List<Recruit> findByCompanyCompanyFnameContainingIgnoreCase(String name);
     List<Recruit> findByPositionContainingIgnoreCase(String position);
     List<Recruit> findByProfessionContainingIgnoreCase(String profession);
+    List<Recruit> findTop6ByOrderByFromDateDesc();
 }

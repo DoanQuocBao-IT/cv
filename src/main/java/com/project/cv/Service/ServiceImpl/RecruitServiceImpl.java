@@ -138,6 +138,13 @@ public class RecruitServiceImpl implements RecruitService {
     }
 
     @Override
+    public List<RecruitDetailDto> findTop6RecruitNewest() {
+        List<Recruit> recruits=recruitRepository.findTop6ByOrderByFromDateDesc();
+        ModelMapper modelMapper=new ModelMapper();
+        return recruits.stream().map(recruit -> modelMapper.map(recruit, RecruitDetailDto.class)).collect(Collectors.toList());
+    }
+
+    @Override
     public List<RecruitDetailDto> findAllRecruitBySearch(String search) {
         List<Recruit> recruits=recruitRepository.findByAddressCity(search);
         if (recruits.isEmpty()){
