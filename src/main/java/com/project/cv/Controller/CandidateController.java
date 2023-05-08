@@ -78,4 +78,8 @@ public class CandidateController {
     public List<RecruitDetailDto> findAllRecruitApply(){
         return applyService.allRecruitApply();
     }
+    @GetMapping("/user")
+    public UsersDto getInformationUser(){
+        return userService.getInformationUser();
+    }
 }

@@ -48,6 +48,12 @@ public class CvServiceImpl implements CvService {
         } else{
             cv.setExperience(Experience.goingtowork.getExperience());
         }
+        cv.setGoals(createCvDto.getGoals());
+        cv.setStudy(createCvDto.getStudy());
+        cv.setWork(createCvDto.getWork());
+        cv.setSkill(createCvDto.getSkill());
+        cv.setPrize(createCvDto.getPrize());
+        cv.setCertificate(cv.getCertificate());
 
         cv.setPosition(createCvDto.getPosition());
         cv.setProfession(createCvDto.getProfession());
@@ -58,7 +64,7 @@ public class CvServiceImpl implements CvService {
     @Override
     public Cv updateCV(int id, CreateCvDto cvDto) {
         Cv cv = cvRepository.findById(id).get();
-        cv.setPosition(cvDto.getPosition());
+
         if (cvDto.getExperience().equals("less1year")) {
             cv.setExperience(Experience.lessoneyear.getExperience());
         } else if (cvDto.getExperience().equals("1year")) {
@@ -76,6 +82,14 @@ public class CvServiceImpl implements CvService {
         } else{
             cv.setExperience(Experience.goingtowork.getExperience());
         }
+        cv.setGoals(cvDto.getGoals());
+        cv.setStudy(cvDto.getStudy());
+        cv.setWork(cvDto.getWork());
+        cv.setSkill(cvDto.getSkill());
+        cv.setPrize(cvDto.getPrize());
+        cv.setCertificate(cvDto.getCertificate());
+
+        cv.setPosition(cvDto.getPosition());
         cv.setProfession(cvDto.getProfession());
         cv.setAddress(cvDto.getAddress());
         return cvRepository.save(cv);

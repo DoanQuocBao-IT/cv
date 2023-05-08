@@ -23,6 +23,13 @@ public class Cv {
     @JoinColumn(name = "candidates_id")
     private Candidates candidates;
 
+    private String goals;
+    private String study;
+    private String work;
+    private String skill;
+    private String prize;
+    private String certificate;
+
     private String profession;
     private String position;
     private String experience;

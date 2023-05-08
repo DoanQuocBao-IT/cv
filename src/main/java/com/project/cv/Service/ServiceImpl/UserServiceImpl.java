@@ -3,12 +3,14 @@ package com.project.cv.Service.ServiceImpl;
 import com.project.cv.Dto.CompanyDto;
 import com.project.cv.Dto.RegisterDto;
 import com.project.cv.Dto.UserDto;
+import com.project.cv.Dto.UsersDto;
 import com.project.cv.Model.*;
 import com.project.cv.Repository.CandidateRepository;
 import com.project.cv.Repository.CompanyRepository;
 import com.project.cv.Repository.RoleRepository;
 import com.project.cv.Repository.UserRepository;
 import com.project.cv.Service.UserService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -80,6 +82,14 @@ public class UserServiceImpl implements UserService {
     public User getProfile() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         return userRepository.findUserByName(authentication.getName());
+    }
+
+    @Override
+    public UsersDto getInformationUser() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        User user=userRepository.findUserByName(authentication.getName());
+        ModelMapper modelMapper=new ModelMapper();
+        return modelMapper.map(user,UsersDto.class);
     }
 
 }
