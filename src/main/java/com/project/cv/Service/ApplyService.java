@@ -12,4 +12,10 @@ public interface ApplyService {
     int countApplyCv(int recruit_id);
     List<Cv> allCvApplyByRecruitId(int recruit_id);
     List<RecruitDetailDto> allRecruitApply();
+    void approvedCvApplyRecruit(int recruit_id, int cv_id);
+    int countCvPassed(int cv_id);
+    List<Cv> allCvApplyByRecruitIdApproved(int recruit_id);
+    List<Cv> allCvApplyByRecruitIdPending(int recruit_id);
+    List<RecruitDetailDto> allRecruitApplyApproved(int cv_id);
+
 }

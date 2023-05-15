@@ -1,6 +1,7 @@
 package com.project.cv.Controller;
 
 import com.project.cv.Dto.AddressDto;
+import com.project.cv.Dto.RecruitDetailDto;
 import com.project.cv.Dto.UsersDto;
 import com.project.cv.Model.Address;
 import com.project.cv.Service.AddressService;

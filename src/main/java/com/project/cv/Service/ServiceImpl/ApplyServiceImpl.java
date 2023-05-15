@@ -36,6 +36,7 @@ public class ApplyServiceImpl implements ApplyService {
         Apply apply=new Apply();
         apply.setCv(cv);
         apply.setRecruit(recruit);
+        apply.setApproved(false);
         return applyRepository.save(apply);
     }
 
@@ -57,5 +58,37 @@ public class ApplyServiceImpl implements ApplyService {
         List<Recruit> recruits=applyRepository.findRecruitsByCvCandidates(candidates);
         ModelMapper modelMapper=new ModelMapper();
         return recruits.stream().map(recruit -> modelMapper.map(recruit, RecruitDetailDto.class)).collect(Collectors.toList());
+    }
+
+    @Override
+    public void approvedCvApplyRecruit(int recruit_id, int cv_id) {
+        Recruit recruit=recruitRepository.findById(recruit_id).get();
+        Cv cv=cvRepository.findById(cv_id).get();
+        Apply apply=applyRepository.findByRecruitAndCv(recruit,cv);
+        apply.setApproved(true);
+        applyRepository.save(apply);
+    }
+
+    @Override
+    public int countCvPassed(int cv_id) {
+        return 0;
+    }
+
+    @Override
+    public List<Cv> allCvApplyByRecruitIdApproved(int recruit_id) {
+        return applyRepository.findByApprovedTrue(recruit_id);
+    }
+
+    @Override
+    public List<Cv> allCvApplyByRecruitIdPending(int recruit_id) {
+        return applyRepository.findByApprovedFalse(recruit_id);
+    }
+
+    @Override
+    public List<RecruitDetailDto> allRecruitApplyApproved(int cv_id) {
+        List<Recruit> recruits=applyRepository.findJobByApprovedTrue(cv_id);
+        ModelMapper modelMapper=new ModelMapper();
+        return recruits.stream().map(recruit -> modelMapper.map(recruit, RecruitDetailDto.class)).collect(Collectors.toList());
+
     }
 }

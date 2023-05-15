@@ -67,4 +67,8 @@ public class CandidateController {
     public List<RecruitDetailDto> findAllRecruitApply(){
         return applyService.allRecruitApply();
     }
+    @GetMapping("/all/recruit/approved/cv/{cv_id}")
+    public List<RecruitDetailDto> allRecruitApproved(@PathVariable int cv_id){
+        return applyService.allRecruitApplyApproved(cv_id);
+    }
 }

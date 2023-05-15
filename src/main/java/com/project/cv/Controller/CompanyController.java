@@ -70,4 +70,17 @@ public class CompanyController {
     public UsersDto getInformationUser(){
         return userService.getInformationUser();
     }
+
+    @GetMapping("/cv/apply/approved/recruit/{recruit_id}")
+    public List<Cv> allCvApproved(@PathVariable int recruit_id){
+        return applyService.allCvApplyByRecruitIdApproved(recruit_id);
+    }
+    @GetMapping("/cv/apply/pending/recruit/{recruit_id}")
+    public List<Cv> allCvPending(@PathVariable int recruit_id){
+        return applyService.allCvApplyByRecruitIdPending(recruit_id);
+    }
+    @GetMapping("/cv/{cv_id}/approved/recruit/{recruit_id}")
+    public void approvedCvApplyRecruit(@PathVariable int cv_id,@PathVariable int recruit_id){
+        applyService.approvedCvApplyRecruit(recruit_id,cv_id);
+    }
 }

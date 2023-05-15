@@ -24,4 +24,7 @@ public class Apply {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cv_id")
     private Cv cv;
+
+    private boolean approved;
+
 }
