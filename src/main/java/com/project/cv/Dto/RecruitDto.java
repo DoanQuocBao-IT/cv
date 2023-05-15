@@ -19,6 +19,6 @@ public class RecruitDto {
     private String responsibilities;
     private String qualifications;
     private String interests;
-    private Address address;
+    private String address;
     private Date toDate;
 }

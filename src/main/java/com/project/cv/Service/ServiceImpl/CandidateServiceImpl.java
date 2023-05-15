@@ -12,6 +12,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+
 @Service
 public class CandidateServiceImpl implements CandidateService {
     @Autowired
@@ -36,17 +38,29 @@ public class CandidateServiceImpl implements CandidateService {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         User user = userRepository.findUserByName(authentication.getName());
         Candidates candidates=candidateRepository.findByCandidate(user);
-        candidates.setBirthday(candidateDto.getBirthday());
-        if (candidateDto.getGender().equals("male")) {
-            candidates.setGender(Gender.male.getGender());
-        } else if (candidateDto.getGender().equals("female")) {
-            candidates.setGender(Gender.female.getGender());
-        } else {
-            candidates.setGender(Gender.other.getGender());
+        if (candidateDto.getBirthday()!=null){
+            candidates.setBirthday(candidateDto.getBirthday());
+        }else {
+            candidates.setBirthday(candidates.getBirthday());
         }
-        candidates.setIntroduce(candidateDto.getIntroduce());
-        candidates.setHobby(candidateDto.getHobby());
-        candidates.setCertificate(candidateDto.getCertificate());
+        if (candidateDto.getGender()!=null){
+            if (candidateDto.getGender().equals("male")) {
+                candidates.setGender(Gender.male.getGender());
+            } else if (candidateDto.getGender().equals("female")) {
+                candidates.setGender(Gender.female.getGender());
+            } else {
+                candidates.setGender(Gender.other.getGender());
+            }
+        }else
+            candidates.setGender(candidates.getGender());
+
+
+        if (candidateDto.getIntroduce()!=null)
+            candidates.setIntroduce(candidateDto.getIntroduce());
+        if (candidateDto.getHobby()!=null)
+            candidates.setHobby(candidateDto.getHobby());
+        if (candidateDto.getCertificate()!=null)
+            candidates.setCertificate(candidateDto.getCertificate());
         return candidateRepository.save(candidates);
     }
 }

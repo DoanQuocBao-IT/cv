@@ -40,9 +40,12 @@ public class CompanyServiceImpl implements CompanyService {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         User user = userRepository.findUserByName(authentication.getName());
         Company company=companyRepository.findByCompany(user);
-        company.setFoundedAt(companyDto.getFoundedAt());
-        company.setInformation(companyDto.getInformation());
-        company.setField(companyDto.getField());
+        if (companyDto.getFoundedAt()!=null)
+            company.setFoundedAt(companyDto.getFoundedAt());
+        if (companyDto.getInformation()!=null)
+            company.setInformation(companyDto.getInformation());
+        if (companyDto.getField()!=null)
+            company.setField(companyDto.getField());
         return companyRepository.save(company);
     }
 

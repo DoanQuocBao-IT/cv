@@ -17,5 +17,5 @@ public class CreateCvDto {
     private String profession;
     private String position;
     private String experience;
-    private Address address;
+    private String address;
 }

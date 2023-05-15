@@ -41,38 +41,50 @@ public class RecruitServiceImpl implements RecruitService {
         recruit.setSalary(recruitDto.getSalary());
         recruit.setPosition(recruitDto.getPosition());
         recruit.setInventory(recruitDto.getInventory());
-        if (recruitDto.getGender().equals("male")) {
-            recruit.setGender(Gender.male.getGender());
-        } else if (recruitDto.getGender().equals("female")) {
-            recruit.setGender(Gender.female.getGender());
-        } else if (recruitDto.getGender().equals("other")) {
-            recruit.setGender(Gender.other.getGender());
-        }else {
-            recruit.setGender(Gender.norequire.getGender());
-        }
+        if (recruitDto.getGender()!=null) {
+            if (recruitDto.getGender().equals("male")) {
+                recruit.setGender(Gender.male.getGender());
+            } else if (recruitDto.getGender().equals("female")) {
+                recruit.setGender(Gender.female.getGender());
+            } else if (recruitDto.getGender().equals("other")) {
+                recruit.setGender(Gender.other.getGender());
+            } else if (recruitDto.getGender().equals("norequire")) {
+                recruit.setGender(Gender.norequire.getGender());
+            }
+        }else recruit.setGender(Gender.other.getGender());
 
-        if (recruitDto.getExperience().equals("not")){
-            recruit.setExperience(Experience.goingtowork.getExperience());
-        } else if (recruitDto.getExperience().equals("less1year")) {
-            recruit.setExperience(Experience.lessoneyear.getExperience());
-        } else if (recruitDto.getExperience().equals("1year")) {
-            recruit.setExperience(Experience.oneyear.getExperience());
-        } else if (recruitDto.getExperience().equals("2year")) {
-            recruit.setExperience(Experience.twoyear.getExperience());
-        } else if (recruitDto.getExperience().equals("3year")) {
-            recruit.setExperience(Experience.threeyear.getExperience());
-        } else if (recruitDto.getExperience().equals("4year")) {
-            recruit.setExperience(Experience.fouryear.getExperience());
-        } else if (recruitDto.getExperience().equals("5year")) {
-            recruit.setExperience(Experience.fiveyear.getExperience());
-        }else{
+        if (recruitDto.getExperience()!=null) {
+            if (recruitDto.getExperience().equals("goingtowork")) {
+                recruit.setExperience(Experience.goingtowork.getExperience());
+            } else if (recruitDto.getExperience().equals("lessoneyear")) {
+                recruit.setExperience(Experience.lessoneyear.getExperience());
+            } else if (recruitDto.getExperience().equals("oneyear")) {
+                recruit.setExperience(Experience.oneyear.getExperience());
+            } else if (recruitDto.getExperience().equals("twoyear")) {
+                recruit.setExperience(Experience.twoyear.getExperience());
+            } else if (recruitDto.getExperience().equals("threeyear")) {
+                recruit.setExperience(Experience.threeyear.getExperience());
+            } else if (recruitDto.getExperience().equals("fouryear")) {
+                recruit.setExperience(Experience.fouryear.getExperience());
+            } else if (recruitDto.getExperience().equals("fiveyear")) {
+                recruit.setExperience(Experience.fiveyear.getExperience());
+            } else if (recruitDto.getExperience().equals("norequire")) {
+                recruit.setExperience(Experience.norequire.getExperience());
+            }
+        }else
             recruit.setExperience(Experience.norequire.getExperience());
-        }
 
         recruit.setResponsibilities(recruitDto.getResponsibilities());
         recruit.setQualifications(recruitDto.getQualifications());
         recruit.setInterests(recruitDto.getInterests());
-        recruit.setAddress(recruitDto.getAddress());
+        if (recruitDto.getAddress()!=null) {
+            int address_id = Integer.parseInt(recruitDto.getAddress());
+            Address address = addressRepository.findById(address_id).get();
+            recruit.setAddress(address);
+        }else {
+            Address address = addressRepository.findById(22).get();
+            recruit.setAddress(address);
+        }
         recruit.setFromDate(new Date());
         recruit.setToDate(recruitDto.getToDate());
 
@@ -82,43 +94,65 @@ public class RecruitServiceImpl implements RecruitService {
     @Override
     public Recruit updateRecruit(int id, RecruitDto recruitDto) {
         Recruit recruit= recruitRepository.findById(id).get();
-        recruit.setProfession(recruitDto.getProfession());
-        recruit.setSalary(recruitDto.getSalary());
-        recruit.setPosition(recruitDto.getPosition());
-        recruit.setInventory(recruitDto.getInventory());
-        if (recruitDto.getGender().equals("male")) {
-            recruit.setGender(Gender.male.getGender());
-        } else if (recruitDto.getGender().equals("female")) {
-            recruit.setGender(Gender.female.getGender());
-        } else if (recruitDto.getGender().equals("other")) {
-            recruit.setGender(Gender.other.getGender());
+        if (recruitDto.getProfession()!=null)
+            recruit.setProfession(recruitDto.getProfession());
+        if (recruitDto.getSalary()!=null)
+            recruit.setSalary(recruitDto.getSalary());
+        if (recruitDto.getPosition()!=null)
+            recruit.setPosition(recruitDto.getPosition());
+        if (recruitDto.getInventory()!=0)
+            recruit.setInventory(recruitDto.getInventory());
+        else
+            recruit.setInventory(recruit.getInventory());
+        if (recruitDto.getGender()!=null) {
+            if (recruitDto.getGender().equals("male")) {
+                recruit.setGender(Gender.male.getGender());
+            } else if (recruitDto.getGender().equals("female")) {
+                recruit.setGender(Gender.female.getGender());
+            } else if (recruitDto.getGender().equals("other")) {
+                recruit.setGender(Gender.other.getGender());
+            } else {
+                recruit.setGender(Gender.norequire.getGender());
+            }
+        }else
+            recruit.setGender(recruit.getGender());
+        if (recruitDto.getExperience()!=null) {
+            if (recruitDto.getExperience().equals("goingtowork")){
+                recruit.setExperience(Experience.goingtowork.getExperience());
+            } else if (recruitDto.getExperience().equals("lessoneyear")) {
+                recruit.setExperience(Experience.lessoneyear.getExperience());
+            } else if (recruitDto.getExperience().equals("oneyear")) {
+                recruit.setExperience(Experience.oneyear.getExperience());
+            } else if (recruitDto.getExperience().equals("twoyear")) {
+                recruit.setExperience(Experience.twoyear.getExperience());
+            } else if (recruitDto.getExperience().equals("threeyear")) {
+                recruit.setExperience(Experience.threeyear.getExperience());
+            } else if (recruitDto.getExperience().equals("fouryear")) {
+                recruit.setExperience(Experience.fouryear.getExperience());
+            } else if (recruitDto.getExperience().equals("fiveyear")) {
+                recruit.setExperience(Experience.fiveyear.getExperience());
+            } else {
+                recruit.setExperience(Experience.norequire.getExperience());
+            }
+        }else
+            recruit.setExperience(recruit.getExperience());
+
+        if (recruitDto.getAddress()!=null) {
+            int address_id = Integer.parseInt(recruitDto.getAddress());
+            Address address = addressRepository.findById(address_id).get();
+            recruit.setAddress(address);
         }else {
-            recruit.setGender(Gender.norequire.getGender());
+            recruit.setAddress(recruit.getAddress());
         }
 
-        if (recruitDto.getExperience().equals("not")){
-            recruit.setExperience(Experience.goingtowork.getExperience());
-        } else if (recruitDto.getExperience().equals("less1year")) {
-            recruit.setExperience(Experience.lessoneyear.getExperience());
-        } else if (recruitDto.getExperience().equals("1year")) {
-            recruit.setExperience(Experience.oneyear.getExperience());
-        } else if (recruitDto.getExperience().equals("2year")) {
-            recruit.setExperience(Experience.twoyear.getExperience());
-        } else if (recruitDto.getExperience().equals("3year")) {
-            recruit.setExperience(Experience.threeyear.getExperience());
-        } else if (recruitDto.getExperience().equals("4year")) {
-            recruit.setExperience(Experience.fouryear.getExperience());
-        } else if (recruitDto.getExperience().equals("5year")) {
-            recruit.setExperience(Experience.fiveyear.getExperience());
-        }else{
-            recruit.setExperience(Experience.norequire.getExperience());
-        }
-
-        recruit.setResponsibilities(recruitDto.getResponsibilities());
-        recruit.setQualifications(recruitDto.getQualifications());
-        recruit.setInterests(recruitDto.getInterests());
-        recruit.setAddress(recruitDto.getAddress());
-        recruit.setToDate(recruitDto.getToDate());
+        if (recruitDto.getResponsibilities()!=null)
+            recruit.setResponsibilities(recruitDto.getResponsibilities());
+        if (recruitDto.getQualifications()!=null)
+            recruit.setQualifications(recruitDto.getQualifications());
+        if (recruitDto.getInterests()!=null)
+            recruit.setInterests(recruitDto.getInterests());
+        if (recruitDto.getToDate()!=null)
+            recruit.setToDate(recruitDto.getToDate());
         return recruitRepository.save(recruit);
     }
 
@@ -163,5 +197,13 @@ public class RecruitServiceImpl implements RecruitService {
     @Override
     public Recruit findRecruitById(int recruit_id) {
         return recruitRepository.findById(recruit_id).get();
+    }
+
+    @Override
+    public List<RecruitDetailDto> findByCompanyId(int company_id) {
+        Company company=companyRepository.findById(company_id).get();
+        List<Recruit> recruits=recruitRepository.findByCompany(company);
+        ModelMapper modelMapper=new ModelMapper();
+        return recruits.stream().map(recruit -> modelMapper.map(recruit, RecruitDetailDto.class)).collect(Collectors.toList());
     }
 }

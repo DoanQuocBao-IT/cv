@@ -37,18 +37,6 @@ public class CompanyController {
     public List<Recruit> allCV(){
         return recruitService.findAllRecruitForCompany();
     }
-    @GetMapping("/all/address")
-    public List<AddressDto> findAllAddressForUser(){
-        return addressService.allAddressForUser();
-    }
-    @PostMapping("/create/address")
-    public Address createAddress(@RequestBody AddressDto addressDto){
-        return addressService.createAddress(addressDto);
-    }
-    @PutMapping("/update/address/{address_id}")
-    public Address updateAddress(@RequestBody AddressDto addressDto,@PathVariable int address_id){
-        return addressService.updateAddress(address_id,addressDto);
-    }
     @PostMapping("/update/profile")
     public User updateProfile(@RequestBody UserDto userDto){
         return userService.updateUser(userDto);
@@ -77,5 +65,9 @@ public class CompanyController {
     @GetMapping("/cv/apply/recruit/{recruit_id}")
     public List<Cv> allCvApplyByRecruit(@PathVariable int recruit_id){
         return applyService.allCvApplyByRecruitId(recruit_id);
+    }
+    @GetMapping("/user")
+    public UsersDto getInformationUser(){
+        return userService.getInformationUser();
     }
 }

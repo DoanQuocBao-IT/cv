@@ -1,60 +1,41 @@
 package com.project.cv.Controller;
 
-import com.project.cv.Dto.CompaniesDto;
-import com.project.cv.Dto.RecruitDetailDto;
+import com.project.cv.Dto.AddressDto;
+import com.project.cv.Dto.UsersDto;
 import com.project.cv.Model.Address;
-import com.project.cv.Model.Company;
-import com.project.cv.Model.Cv;
-import com.project.cv.Model.Recruit;
 import com.project.cv.Service.AddressService;
-import com.project.cv.Service.CompanyService;
-import com.project.cv.Service.CvService;
-import com.project.cv.Service.RecruitService;
+import com.project.cv.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/appcv")
+@RequestMapping("/user")
 @CrossOrigin(origins = {"*"})
 public class UserController {
     @Autowired
-    RecruitService recruitService;
-    @Autowired
-    CvService cvService;
-    @Autowired
-    CompanyService companyService;
+    UserService userService;
     @Autowired
     AddressService addressService;
-    @GetMapping("/recruit")
-    public List<RecruitDetailDto> findAllRecruit(){
-        return recruitService.findAllRecruit();
+    @GetMapping("/profile")
+    public UsersDto getInformationUser(){
+        return userService.getInformationUser();
     }
-    @GetMapping("/top6/recruit")
-    public List<RecruitDetailDto> findTop6Recruit(){
-        return recruitService.findTop6RecruitNewest();
+    @GetMapping("/all/address")
+    public List<AddressDto> findAllAddressForUser(){
+        return addressService.allAddressForUser();
     }
-    @GetMapping("/recruit/{recruit_id}")
-    public Recruit findRecruitById(@PathVariable int recruit_id){
-        return recruitService.findRecruitById(recruit_id);
+    @GetMapping("/address/{address_id}")
+    public AddressDto findAddressById(@PathVariable int address_id){
+        return addressService.findAddressById(address_id);
     }
-    @GetMapping("/company/{company_id}")
-    public Company findCompanyById(@PathVariable int company_id){
-        return companyService.getCompanyById(company_id);
+    @PostMapping("/create/address")
+    public Address createAddress(@RequestBody AddressDto addressDto){
+        return addressService.createAddress(addressDto);
     }
-    @GetMapping("/all/company")
-    public List<CompaniesDto>  findAllCompanies(){
-        return companyService.findAllCompany();
-    }
-    @GetMapping("/top6/company")
-    public List<CompaniesDto>  findTop6CompanyNewest(){
-        return companyService.findTop6Company();
-    }
-
-    @GetMapping("/job")
-    public List<RecruitDetailDto> findByCity(@RequestParam String search){
-        return recruitService.findAllRecruitBySearch(search);
+    @PutMapping("/update/address/{address_id}")
+    public Address updateAddress(@RequestBody AddressDto addressDto,@PathVariable int address_id){
+        return addressService.updateAddress(address_id,addressDto);
     }
 }

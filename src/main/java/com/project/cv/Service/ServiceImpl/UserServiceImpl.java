@@ -39,11 +39,16 @@ public class UserServiceImpl implements UserService {
             }
             user.setUsername(registerDto.getUsername());
             user.setPassword(passwordEncoder.encode(registerDto.getPassword()));
-            user.setFname(registerDto.getFname());
-            user.setImage(registerDto.getImage());
-            user.setEmail(registerDto.getEmail());
-            user.setPhone(registerDto.getPhone());
-            user.setWebsite(registerDto.getWebsite());
+            if (registerDto.getFname()!=null)
+                user.setFname(registerDto.getFname());
+            if (registerDto.getImage()!=null)
+                user.setImage(registerDto.getImage());
+            if (registerDto.getEmail()!=null)
+                user.setEmail(registerDto.getEmail());
+            if (registerDto.getPhone()!=null)
+                user.setPhone(registerDto.getPhone());
+            if (registerDto.getWebsite()!=null)
+                user.setWebsite(registerDto.getWebsite());
             user.addRole(role);
 
             if (registerDto.getRoleName().equals("company")){
@@ -69,12 +74,18 @@ public class UserServiceImpl implements UserService {
     public User updateUser(UserDto userDto) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         User user = userRepository.findUserByName(authentication.getName());
-        user.setFname(userDto.getFname());
-        user.setImage(userDto.getImage());
-        user.setEmail(userDto.getEmail());
-        user.setPhone(userDto.getPhone());
-        user.setWebsite(userDto.getWebsite());
-        user.setAddress(userDto.getAddress());
+        if (userDto.getFname()!=null)
+            user.setFname(userDto.getFname());
+        if (userDto.getImage()!=null)
+            user.setImage(userDto.getImage());
+        if (userDto.getEmail()!=null)
+            user.setEmail(userDto.getEmail());
+        if (userDto.getPhone()!=null)
+            user.setPhone(userDto.getPhone());
+        if (userDto.getWebsite()!=null)
+            user.setWebsite(userDto.getWebsite());
+        if (userDto.getAddress()!=null)
+            user.setAddress(userDto.getAddress());
         return userRepository.save(user);
     }
 
