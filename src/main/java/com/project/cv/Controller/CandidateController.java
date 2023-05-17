@@ -24,6 +24,10 @@ public class CandidateController {
     CompanyService companyService;
     @Autowired
     ApplyService applyService;
+    @Autowired
+    FollowService followService;
+    @Autowired
+    SavejobService savejobService;
 
     @PostMapping("/create/cv")
     public Cv createCV(@RequestBody CreateCvDto createCvDto){
@@ -70,5 +74,39 @@ public class CandidateController {
     @GetMapping("/all/recruit/approved/cv/{cv_id}")
     public List<RecruitDetailDto> allRecruitApproved(@PathVariable int cv_id){
         return applyService.allRecruitApplyApproved(cv_id);
+    }
+
+    @GetMapping("/all/follow/company")
+    public List<Company> findCompanyFollow(){
+        return followService.findAllCompanyFollow();
+    }
+    @GetMapping("/follow/company/{company_id}")
+    public void followCompany(@PathVariable int company_id){
+        followService.followCompany(company_id);
+    }
+    @GetMapping("/del/follow/company/{company_id}")
+    public void deleteFollowCompany(@PathVariable int company_id){
+        followService.deleteFollow(company_id);
+    }
+
+    @GetMapping("/all/follow/recruit")
+    public List<Recruit> findJobFollow(){
+        return savejobService.findAllJobSave();
+    }
+    @GetMapping("/follow/recruit/{recruit_id}")
+    public void followJob(@PathVariable int recruit_id){
+        savejobService.followJob(recruit_id);
+    }
+    @GetMapping("/del/follow/recruit/{recruit_id}")
+    public void deleteFollowJob(@PathVariable int recruit_id){
+        savejobService.deleteFollowJob(recruit_id);
+    }
+    @GetMapping("/followed/company/{company_id}")
+    public boolean followedCompany(@PathVariable int company_id){
+        return followService.isFollowedCompany(company_id);
+    }
+    @GetMapping("/followed/recruit/{recruit_id}")
+    public boolean followedRecruit(@PathVariable int recruit_id){
+        return savejobService.isFollowedJob(recruit_id);
     }
 }
