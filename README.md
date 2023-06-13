@@ -15,7 +15,7 @@ For token authentication and management, we rely on JJWT (JSON Web Token). JJWT 
 
 In summary, our job search application, built with Java Backend and utilizing Spring JPA, Spring Security, Spring Mail, MySQL, Lombok, and JJWT, offers a powerful and secure platform for users to find their desired job opportunities.
 
-Github Application Find Job: 
+Github Application Find Job: https://github.com/DoanQuocBao-IT/appcv.git
 
 Function Authentication:
 
