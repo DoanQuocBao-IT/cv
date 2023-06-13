@@ -66,11 +66,6 @@ public class CompanyController {
     public List<Cv> allCvApplyByRecruit(@PathVariable int recruit_id){
         return applyService.allCvApplyByRecruitId(recruit_id);
     }
-    @GetMapping("/user")
-    public UsersDto getInformationUser(){
-        return userService.getInformationUser();
-    }
-
     @GetMapping("/cv/apply/approved/recruit/{recruit_id}")
     public List<Cv> allCvApproved(@PathVariable int recruit_id){
         return applyService.allCvApplyByRecruitIdApproved(recruit_id);

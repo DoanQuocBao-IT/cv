@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "46b853a9-78c6-4da7-8f70-357950d5b683",
-		"name": "CV",
+		"_postman_id": "8cfb8399-e2ce-4123-9892-f7a0c9fe903c",
+		"name": "AppFindJob",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "23897068"
 	},
@@ -16,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\":\"bao6\",\r\n    \"password\":\"12345\",\r\n    \"fname\":\"Nguyen Van C\",\r\n    \"image\":\"https://th.bing.com/th/id/OIP.fdgzoi3CudQNGJFWCwIr2QHaHa?w=157&h=180&c=7&r=0&o=5&pid=1.7\",\r\n    \"email\":\"nguyenvanc@gmail.com\",\r\n    \"phone\":\"0963746533\",\r\n    \"website\":\"https://github.com/NguyenVanC\",\r\n    \"birthday\":\"2003-08-02\",\r\n    \"roleName\":\"candidate\"\r\n}",
+							"raw": "{\r\n    \"username\":\"bao2\",\r\n    \"password\":\"12345\",\r\n    \"roleName\":\"candidate\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -46,7 +46,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\":\"bao1\",\r\n    \"password\":\"12345\"\r\n}",
+							"raw": "{\r\n    \"username\":\"bao2\",\r\n    \"password\":\"12345\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -68,6 +68,112 @@
 						"description": "Chức năng đăng nhập tài khoản, người dùng cần nhập username và password để đăng nhập tài khoản"
 					},
 					"response": []
+				},
+				{
+					"name": "Change-password",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW8yIiwicm9sZSI6ImNhbmRpZGF0ZSIsImV4cCI6MTY4Njk0MzAzNywiaWF0IjoxNjg2NTgzMDM3fQ.6gIYmaJHKHDEguWu6EwnsxhQ8Hp1k4bjQGlaVfZTPaY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "123456",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/auth/change-password",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"change-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Forgot Password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "doanquocbao4117@gmail.com",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/auth/forgot-password",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"forgot-password"
+							]
+						},
+						"description": "Chức năng quên mật khẩu , người dùng ﻿khi chọn chức năng quên mật khẩu thì sẽ gữi email của tài khoản đã quên mật khẩu. Hệ thống sẽ kiểm tra mail và gữi đến mail 1 liên kết chứa 1 trang reset-password và 1 đoạn mã token"
+					},
+					"response": []
+				},
+				{
+					"name": "Reset Password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "123456",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/auth/reset-password?passcode=668859",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"reset-password"
+							],
+							"query": [
+								{
+									"key": "passcode",
+									"value": "668859"
+								}
+							]
+						},
+						"description": "Sau khi kiểm tra mail để tìm thấy link thay đổi mật khẩu thì nhấn vào link để chuyẻn đến trang reset-password và nhập mật khẩu mới kèm theo mã token đã gữi kèm vào mail"
+					},
+					"response": []
 				}
 			],
 			"description": "StartFragment\n\nSpring Security is a powerful authentication and authorization framework that provides secure login functionality for applications. With Spring Security, users can log in using their username and password, and their credentials are securely encrypted for protection. This ensures that only authorized users can access the application, providing an extra layer of security for your application.\n\nEndFragment"
@@ -86,7 +192,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW82Iiwicm9sZSI6ImNhbmRpZGF0ZSIsImV4cCI6MTY4MzQ2NjAwNSwiaWF0IjoxNjgzMTA2MDA1fQ.TPh1KSkz6-8lt7X8tuckeyX5D3YlmMuGbWewF__GBQo",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW8xOCIsInJvbGUiOiJjYW5kaWRhdGUiLCJleHAiOjE2ODQ0Mjg1NTAsImlhdCI6MTY4NDA2ODU1MH0.aLi34_RIqwbcK8zc8Wo0jJm_tjYrjx9MPxzHqy8WqI0",
 											"type": "string"
 										}
 									]
@@ -95,7 +201,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"profession\":\"Information Technology\",\r\n    \"position\":\"Fresher ReactJS\",\r\n    \"experience\":\"1year\"\r\n}",
+									"raw": "{\r\n    \"goals\":\"Áp dụng những kinh nghiệm của bản thân về sự bán hàng và hiểu biết về thị trường để trở thành nhân viên xuất sắc , chuyên nghiệp mang đến giá trị của khách hàng \",\r\n    \"study\":\"Đại học Sư phạm Kĩ thuật Thành phố Hồ Chí Minh | 2020-2024 Chuyên ngành Công nghệ Thông tin\",\r\n    \"work\":\"Công ty TNHH TopCV | 2021-2022\",\r\n    \"skill\":\"Tiếng anh giao tiếptiếp, đọc hiểu cơ bản \",\r\n    \"prize\":\"Nhân viên xuất sắc nhất tháng TopCv\",\r\n    \"certificate\":\"AWS\",\r\n    \"profession\":\"Information Technology\",\r\n    \"position\":\"Fresher Mobile Developer\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -126,7 +232,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW8xIiwicm9sZSI6ImNhbmRpZGF0ZSIsImV4cCI6MTY4MzM5MzExOSwiaWF0IjoxNjgzMDMzMTE5fQ.VJuzTKSmpVj2JZtcivxH1OBF7d2Jdyqv5n2im1FTWQ4",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW8yIiwicm9sZSI6ImNhbmRpZGF0ZSIsImV4cCI6MTY4NDM0OTYwMSwiaWF0IjoxNjgzOTg5NjAxfQ.oxDEU4bPKiEaXNW33kiAfZ-JfK7T2_hl0EVxKqwSqso",
 											"type": "string"
 										}
 									]
@@ -135,7 +241,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"profession\":\"Marketing\",\r\n    \"position\":\"Fresher\",\r\n    \"experience\":\"1 year\",\r\n    \"address\":{\r\n        \"id\":2\r\n    }\r\n}",
+									"raw": "{\r\n\r\n    \"prize\":\"Nhân viên xuất sắc nhất tháng TopCv\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -167,7 +273,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW82Iiwicm9sZSI6ImNhbmRpZGF0ZSIsImV4cCI6MTY4MzQ2NjAwNSwiaWF0IjoxNjgzMTA2MDA1fQ.TPh1KSkz6-8lt7X8tuckeyX5D3YlmMuGbWewF__GBQo",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW8xOCIsInJvbGUiOiJjYW5kaWRhdGUiLCJleHAiOjE2ODQ0Mjg1NTAsImlhdCI6MTY4NDA2ODU1MH0.aLi34_RIqwbcK8zc8Wo0jJm_tjYrjx9MPxzHqy8WqI0",
 											"type": "string"
 										}
 									]
@@ -193,123 +299,6 @@
 					]
 				},
 				{
-					"name": "Address",
-					"item": [
-						{
-							"name": "Create Address",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW82Iiwicm9sZSI6ImNhbmRpZGF0ZSIsImV4cCI6MTY4MzQ2NjAwNSwiaWF0IjoxNjgzMTA2MDA1fQ.TPh1KSkz6-8lt7X8tuckeyX5D3YlmMuGbWewF__GBQo",
-											"type": "string"
-										}
-									]
-								},
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"city\":\"Ho Chi Minh\",\r\n    \"address\":\"25 Bac Ai, Binh Tho, Thu Duc\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "localhost:8080/api/candidate/create/address",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"api",
-										"candidate",
-										"create",
-										"address"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Update Address",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW8zIiwicm9sZSI6ImNhbmRpZGF0ZSIsImV4cCI6MTY4MzQwMDQzNywiaWF0IjoxNjgzMDQwNDM3fQ.A5wHn30aBX1CY0JtxnCzkS5l3KdvMRcYo8ZyeMIu0FA",
-											"type": "string"
-										}
-									]
-								},
-								"method": "PUT",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"city\":\"Ha Noi\",\r\n    \"address\":\"73 Hai Ba Trung, Hoan Kiem\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "localhost:8080/api/candidate/update/address/5",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"api",
-										"candidate",
-										"update",
-										"address",
-										"5"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Get Address For Candidate",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW82Iiwicm9sZSI6ImNhbmRpZGF0ZSIsImV4cCI6MTY4MzQ2NjAwNSwiaWF0IjoxNjgzMTA2MDA1fQ.TPh1KSkz6-8lt7X8tuckeyX5D3YlmMuGbWewF__GBQo",
-											"type": "string"
-										}
-									]
-								},
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "localhost:8080/api/candidate/all/address",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"api",
-										"candidate",
-										"all",
-										"address"
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				},
-				{
 					"name": "Profile User",
 					"item": [
 						{
@@ -320,7 +309,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW82Iiwicm9sZSI6ImNhbmRpZGF0ZSIsImV4cCI6MTY4MzQ2NjAwNSwiaWF0IjoxNjgzMTA2MDA1fQ.TPh1KSkz6-8lt7X8tuckeyX5D3YlmMuGbWewF__GBQo",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW8yIiwicm9sZSI6ImNhbmRpZGF0ZSIsImV4cCI6MTY4NDE4OTY3OCwiaWF0IjoxNjgzODI5Njc4fQ.FSRmUVF_fiJRaHmy_7e7f5Gz6ofKEJ1t7IDY1de6QmQ",
 											"type": "string"
 										}
 									]
@@ -329,7 +318,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"fname\":\"Nguyen Van C\",\r\n    \"image\":\"https://th.bing.com/th/id/OIP.fdgzoi3CudQNGJFWCwIr2QHaHa?w=157&h=180&c=7&r=0&o=5&pid=1.7\",\r\n    \"email\":\"nguyenvanc@gmail.com\",\r\n    \"phone\":\"0963746533\",\r\n    \"website\":\"https://github.com/NguyenVanC\",\r\n    \"address\":{\r\n        \"id\":8\r\n    }\r\n}",
+									"raw": "{\r\n    \"fname\":\"Nguyen Van BA\",\r\n    \"image\":\"https://th.bing.com/th/id/OIP.fdgzoi3CudQNGJFWCwIr2QHaHa?w=157&h=180&c=7&r=0&o=5&pid=1.7\",\r\n    \"email\":\"nguyenvanh@gmail.com\",\r\n    \"phone\":\"0823468347\",\r\n    \"website\":\"https://github.com/NguyenVanH\",\r\n    \"address\":{\r\n        \"id\":4\r\n    }\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -360,7 +349,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW82Iiwicm9sZSI6ImNhbmRpZGF0ZSIsImV4cCI6MTY4MzQ2NjAwNSwiaWF0IjoxNjgzMTA2MDA1fQ.TPh1KSkz6-8lt7X8tuckeyX5D3YlmMuGbWewF__GBQo",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW8yIiwicm9sZSI6ImNhbmRpZGF0ZSIsImV4cCI6MTY4NzAwNDk4MSwiaWF0IjoxNjg2NjQ0OTgxfQ.dYR4calDMqkiALLLtSRQ7vfdm-prBwoR5X7QQvXHTV8",
 											"type": "string"
 										}
 									]
@@ -395,7 +384,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW82Iiwicm9sZSI6ImNhbmRpZGF0ZSIsImV4cCI6MTY4MzQ2NjAwNSwiaWF0IjoxNjgzMTA2MDA1fQ.TPh1KSkz6-8lt7X8tuckeyX5D3YlmMuGbWewF__GBQo",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW8yIiwicm9sZSI6ImNhbmRpZGF0ZSIsImV4cCI6MTY4NDIyNzkxNCwiaWF0IjoxNjgzODY3OTE0fQ.kfVQsykXuMi_71Jnj8l2e00lKU87u14N0Y39X2J0VQo",
 											"type": "string"
 										}
 									]
@@ -404,7 +393,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"birthday\":\"2001-09-09\",\r\n    \"gender\":\"male\",\r\n    \"introduce\":\"I am student in HCMUTE\",\r\n    \"hobby\":\"sport,singer\",\r\n    \"certificate\":\"Toeic 800\"\r\n}",
+									"raw": "{\r\n    \"gender\":\"female\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -435,7 +424,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW82Iiwicm9sZSI6ImNhbmRpZGF0ZSIsImV4cCI6MTY4MzQ2NjAwNSwiaWF0IjoxNjgzMTA2MDA1fQ.TPh1KSkz6-8lt7X8tuckeyX5D3YlmMuGbWewF__GBQo",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW8yIiwicm9sZSI6ImNhbmRpZGF0ZSIsImV4cCI6MTY4NDIyNzkxNCwiaWF0IjoxNjgzODY3OTE0fQ.kfVQsykXuMi_71Jnj8l2e00lKU87u14N0Y39X2J0VQo",
 											"type": "string"
 										}
 									]
@@ -460,6 +449,274 @@
 					]
 				},
 				{
+					"name": "Follow Company",
+					"item": [
+						{
+							"name": "Follow Company",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW8yIiwicm9sZSI6ImNhbmRpZGF0ZSIsImV4cCI6MTY4NDUyMTA5MSwiaWF0IjoxNjg0MTYxMDkxfQ.VL5_GgVlOOljPlzVEqjT2JooprybVvDp9H_dIOHdjTM",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/api/candidate/follow/company/1",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"candidate",
+										"follow",
+										"company",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "All Company Follow",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW8yIiwicm9sZSI6ImNhbmRpZGF0ZSIsImV4cCI6MTY4NzAwNDk4MSwiaWF0IjoxNjg2NjQ0OTgxfQ.dYR4calDMqkiALLLtSRQ7vfdm-prBwoR5X7QQvXHTV8",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/api/candidate/all/follow/company",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"candidate",
+										"all",
+										"follow",
+										"company"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete follow company",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW8yIiwicm9sZSI6ImNhbmRpZGF0ZSIsImV4cCI6MTY4NDUyMTA5MSwiaWF0IjoxNjg0MTYxMDkxfQ.VL5_GgVlOOljPlzVEqjT2JooprybVvDp9H_dIOHdjTM",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/api/candidate/del/follow/company/1",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"candidate",
+										"del",
+										"follow",
+										"company",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Followed Company (true or false)",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW8yIiwicm9sZSI6ImNhbmRpZGF0ZSIsImV4cCI6MTY4NzAwNDk4MSwiaWF0IjoxNjg2NjQ0OTgxfQ.dYR4calDMqkiALLLtSRQ7vfdm-prBwoR5X7QQvXHTV8",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/api/candidate/followed/company/1",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"candidate",
+										"followed",
+										"company",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Follow Job",
+					"item": [
+						{
+							"name": "Follow Job",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW8yIiwicm9sZSI6ImNhbmRpZGF0ZSIsImV4cCI6MTY4NDUyMTA5MSwiaWF0IjoxNjg0MTYxMDkxfQ.VL5_GgVlOOljPlzVEqjT2JooprybVvDp9H_dIOHdjTM",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/api/candidate/follow/recruit/1",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"candidate",
+										"follow",
+										"recruit",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "All Job Follow",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW8yIiwicm9sZSI6ImNhbmRpZGF0ZSIsImV4cCI6MTY4NDUyMTA5MSwiaWF0IjoxNjg0MTYxMDkxfQ.VL5_GgVlOOljPlzVEqjT2JooprybVvDp9H_dIOHdjTM",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/api/candidate/all/follow/recruit",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"candidate",
+										"all",
+										"follow",
+										"recruit"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete follow job",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW8yIiwicm9sZSI6ImNhbmRpZGF0ZSIsImV4cCI6MTY4NDUyMTA5MSwiaWF0IjoxNjg0MTYxMDkxfQ.VL5_GgVlOOljPlzVEqjT2JooprybVvDp9H_dIOHdjTM",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/api/candidate/del/follow/recruit/1",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"candidate",
+										"del",
+										"follow",
+										"recruit",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Followed Job (true or false)",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW8yIiwicm9sZSI6ImNhbmRpZGF0ZSIsImV4cCI6MTY4NDUyMTA5MSwiaWF0IjoxNjg0MTYxMDkxfQ.VL5_GgVlOOljPlzVEqjT2JooprybVvDp9H_dIOHdjTM",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/api/candidate/followed/recruit/1",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"candidate",
+										"followed",
+										"recruit",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
 					"name": "Apply CV To Recruit",
 					"request": {
 						"auth": {
@@ -467,7 +724,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW82Iiwicm9sZSI6ImNhbmRpZGF0ZSIsImV4cCI6MTY4MzQ2NjAwNSwiaWF0IjoxNjgzMTA2MDA1fQ.TPh1KSkz6-8lt7X8tuckeyX5D3YlmMuGbWewF__GBQo",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW8xMiIsInJvbGUiOiJjYW5kaWRhdGUiLCJleHAiOjE2ODM2NjkyMzAsImlhdCI6MTY4MzMwOTIzMH0.paV0hUqScUillePn-GYgZH3ayBXEWgO9t0K1g-5KxKs",
 									"type": "string"
 								}
 							]
@@ -475,7 +732,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/api/candidate/apply/4",
+							"raw": "localhost:8080/api/candidate/apply/8",
 							"host": [
 								"localhost"
 							],
@@ -484,7 +741,72 @@
 								"api",
 								"candidate",
 								"apply",
-								"4"
+								"8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all Recruit apply",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW8yIiwicm9sZSI6ImNhbmRpZGF0ZSIsImV4cCI6MTY4NDIyNzkxNCwiaWF0IjoxNjgzODY3OTE0fQ.kfVQsykXuMi_71Jnj8l2e00lKU87u14N0Y39X2J0VQo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/candidate/recruit/apply",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"candidate",
+								"recruit",
+								"apply"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Job is Passed",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW8yIiwicm9sZSI6ImNhbmRpZGF0ZSIsImV4cCI6MTY4NDUyMTA5MSwiaWF0IjoxNjg0MTYxMDkxfQ.VL5_GgVlOOljPlzVEqjT2JooprybVvDp9H_dIOHdjTM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/candidate/all/recruit/approved/cv/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"candidate",
+								"all",
+								"recruit",
+								"approved",
+								"cv",
+								"1"
 							]
 						}
 					},
@@ -506,7 +828,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW81Iiwicm9sZSI6ImNvbXBhbnkiLCJleHAiOjE2ODM0NjUyNjIsImlhdCI6MTY4MzEwNTI2Mn0.bjNnXy3XLPaF1AFQAqdVA_vV0KDOoxYaoLvLMiaKoq4",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW8xNyIsInJvbGUiOiJjb21wYW55IiwiZXhwIjoxNjg0NDE2NzA2LCJpYXQiOjE2ODQwNTY3MDZ9.5PUMK-ssQjwU0_dqEGroLMiTtrxE_g-i6J4O28NOuKc",
 											"type": "string"
 										}
 									]
@@ -515,7 +837,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"profession\":\"Information Technology\",\r\n    \"salary\":\"Tới 40 triệu\",\r\n    \"position\":\" Front - End Developer ( Vuejs )\",\r\n    \"inventory\":5,\r\n    \"gender\":\"none\",\r\n    \"experience\":\"3year\",\r\n    \"responsibilities\":\"Tham gia phân tích nghiệp vụ để định hướng sớm về Solution hoặc đưa ra các đề xuất điều chỉnh nghiệp vụ để tăng tính khả thi của phần mềm/ứng dụng/hệ thống CNTT\",\r\n    \"qualifications\":\"Tốt nghiệp Đại học chuyên ngành Công nghệ thông tin, khoa học máy tính hoặc các ngành liên quan\",\r\n    \"interests\":\"Môi trường làm việc thân thiện, năng động, có cơ hội phát triển bản thân và thăng tiến.\",\r\n    \"address\":{\r\n        \"id\":7\r\n    },\r\n    \"toDate\":\"2023-05-19\"\r\n}",
+									"raw": "{\r\n    \"profession\":\"Information Technology\",\r\n    \"salary\":\"Thoả thuận\",\r\n    \"position\":\"Project Manager\",\r\n    \"inventory\":1,\r\n    \"responsibilities\":\"Clarify and analyze requirements to ensure understanding of business requirements from clients correctly and deliver expectations to the client\",\r\n    \"qualifications\":\"At least one year of experience working as a Project Manager and one or two years of experience working as a Software Business Analyst\",\r\n    \"interests\":\"NO LIMITED SALARY RANGE, IT IS TOTALLY UP TO YOU\",\r\n    \"toDate\":\"2023-06-04\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -546,7 +868,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW8zIiwicm9sZSI6ImNvbXBhbnkiLCJleHAiOjE2ODM0NjI3MjYsImlhdCI6MTY4MzEwMjcyNn0.Dn8BSUfE7lhtsCKgo37XmpRf5HuvAskyH1LD_zajG6g",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW8xNyIsInJvbGUiOiJjb21wYW55IiwiZXhwIjoxNjg0NDE2NzA2LCJpYXQiOjE2ODQwNTY3MDZ9.5PUMK-ssQjwU0_dqEGroLMiTtrxE_g-i6J4O28NOuKc",
 											"type": "string"
 										}
 									]
@@ -555,7 +877,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"profession\":\"Information Technology\",\r\n    \"salary\":\"Thoả thuận\",\r\n    \"position\":\" Lập Trình Viên\",\r\n    \"inventory\":30,\r\n    \"gender\":\"none\",\r\n    \"experience\":\"2year\",\r\n    \"responsibilities\":\"Thiết kế các phần mềm, website quản trị doanh nghiệp (ERP) cho các khách hàng của Nhật\",\r\n    \"qualifications\":\"Có kinh nghiệm lập trình 1 trong các ngôn ngữ: 1. C# MVC/ ASP.NET, 2. NodeJs/ ReactJs, 3. Python (biết sử dụng Revit là một lợi thế)\",\r\n    \"interests\":\"Lương khởi điểm cao: Dựa vào năng lực, kinh nghiệm\",\r\n    \"address\":{\r\n        \"id\":5\r\n    },\r\n    \"toDate\":\"2023-05-25\"\r\n}",
+									"raw": "{\r\n    \"toDate\": \"2023-06-07\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -563,7 +885,7 @@
 									}
 								},
 								"url": {
-									"raw": "localhost:8080/api/company/update/recruit/3",
+									"raw": "localhost:8080/api/company/update/recruit/11",
 									"host": [
 										"localhost"
 									],
@@ -573,7 +895,7 @@
 										"company",
 										"update",
 										"recruit",
-										"3"
+										"11"
 									]
 								}
 							},
@@ -587,7 +909,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW8xIiwicm9sZSI6ImNvbXBhbnkiLCJleHAiOjE2ODM0NjYzOTUsImlhdCI6MTY4MzEwNjM5NX0.6hokm4s_jQ7_a9JndfVLBOcgBncwFnlDU9468QZwhD8",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW8xIiwicm9sZSI6ImNvbXBhbnkiLCJleHAiOjE2ODcwMDQxOTIsImlhdCI6MTY4NjY0NDE5Mn0.qYdCe0SYp4O71IGE4JVnXMqi2G23YPd0CiqVd_91oDg",
 											"type": "string"
 										}
 									]
@@ -613,123 +935,6 @@
 					]
 				},
 				{
-					"name": "Address",
-					"item": [
-						{
-							"name": "Create Address",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW81Iiwicm9sZSI6ImNvbXBhbnkiLCJleHAiOjE2ODM0NjUyNjIsImlhdCI6MTY4MzEwNTI2Mn0.bjNnXy3XLPaF1AFQAqdVA_vV0KDOoxYaoLvLMiaKoq4",
-											"type": "string"
-										}
-									]
-								},
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"city\":\"Ha Noi\",\r\n    \"address\":\"Tòa 319 Bộ Quốc Phòng, Số 63 Lê Văn Lương, Trung Hòa, Cầu Giấy\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "localhost:8080/api/company/create/address",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"api",
-										"company",
-										"create",
-										"address"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Update Address Copy",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW8yIiwicm9sZSI6ImNvbXBhbnkiLCJleHAiOjE2ODMzMTk4NTUsImlhdCI6MTY4Mjk1OTg1NX0.SfORT6vMzLH80KUFaOXjBtP7uO6jOVplxM5PjOS2eMM",
-											"type": "string"
-										}
-									]
-								},
-								"method": "PUT",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"city\":\"BR-VT\",\r\n    \"address\":\"73 Hai Ba Trung, Hoan Kiem\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "localhost:8080/api/company/update/address/5",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"api",
-										"company",
-										"update",
-										"address",
-										"5"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Get Address For Candidate Copy",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW81Iiwicm9sZSI6ImNvbXBhbnkiLCJleHAiOjE2ODM0NjUyNjIsImlhdCI6MTY4MzEwNTI2Mn0.bjNnXy3XLPaF1AFQAqdVA_vV0KDOoxYaoLvLMiaKoq4",
-											"type": "string"
-										}
-									]
-								},
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "localhost:8080/api/company/all/address",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"api",
-										"company",
-										"all",
-										"address"
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				},
-				{
 					"name": "Profile User",
 					"item": [
 						{
@@ -740,7 +945,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW81Iiwicm9sZSI6ImNvbXBhbnkiLCJleHAiOjE2ODM0NjUyNjIsImlhdCI6MTY4MzEwNTI2Mn0.bjNnXy3XLPaF1AFQAqdVA_vV0KDOoxYaoLvLMiaKoq4",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW8xNSIsInJvbGUiOiJjb21wYW55IiwiZXhwIjoxNjgzODI5MDQ5LCJpYXQiOjE2ODM0NjkwNDl9.j7defjmyBFK9taODn2Hek0zcUMMOZehwjscgrFWOFbo",
 											"type": "string"
 										}
 									]
@@ -749,7 +954,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"fname\":\"Công ty Cổ phần Hệ thống Công nghệ ETC\",\r\n    \"image\":\"https://cdn.topcv.vn/80/company_logos/hgTiOn9OZKDjJfARGkwrqczYVDkWC2it_1673406018____c31b182fa12ed20bae653cad41e00185.jpg\",\r\n    \"email\":\"etc@gmail.com\",\r\n    \"phone\":\"0834784311\",\r\n    \"website\":\"https://www.topcv.vn/cong-ty/cong-ty-co-phan-he-thong-cong-nghe-etc/70478.html\",\r\n    \"address\":{\r\n        \"id\":7\r\n    }\r\n}",
+									"raw": "{\r\n    \"fname\":\"CÔNG TY TNHH DỊCH VỤ - CÔNG NGHỆ GLOBEE\",\r\n    \"image\":\"https://cdn.topcv.vn/80/company_logos/FQUqRPN7d7iZx28WHsOJWftFj4Kdz6Bp_1650010106____e542a96cfe27ff4545d6afe006be7ab5.png\",\r\n    \"email\":\"grooo@gmail.com\",\r\n    \"phone\":\"0823468347\",\r\n    \"website\":\"https://www.topcv.vn/cong-ty/cong-ty-co-phan-grooo-international/2440.html\",\r\n    \"address\":{\r\n        \"id\":17\r\n    }\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -780,7 +985,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW81Iiwicm9sZSI6ImNvbXBhbnkiLCJleHAiOjE2ODM0NjUyNjIsImlhdCI6MTY4MzEwNTI2Mn0.bjNnXy3XLPaF1AFQAqdVA_vV0KDOoxYaoLvLMiaKoq4",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW8xIiwicm9sZSI6ImNvbXBhbnkiLCJleHAiOjE2ODcwMDQxOTIsImlhdCI6MTY4NjY0NDE5Mn0.qYdCe0SYp4O71IGE4JVnXMqi2G23YPd0CiqVd_91oDg",
 											"type": "string"
 										}
 									]
@@ -815,7 +1020,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW81Iiwicm9sZSI6ImNvbXBhbnkiLCJleHAiOjE2ODM0NjUyNjIsImlhdCI6MTY4MzEwNTI2Mn0.bjNnXy3XLPaF1AFQAqdVA_vV0KDOoxYaoLvLMiaKoq4",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW8xNSIsInJvbGUiOiJjb21wYW55IiwiZXhwIjoxNjg0MTcwNDg2LCJpYXQiOjE2ODM4MTA0ODZ9.-ReJEfScArddEvUWo8YwCnvBYireTPWBEfBmCnwSXEA",
 											"type": "string"
 										}
 									]
@@ -824,7 +1029,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"foundedAt\":\"2013-07-05\",\r\n    \"information\":\"Công ty Cổ phần Hệ thống Công nghệ ETC (gọi tắt là công ty ETC), là một trong những doanh nghiệp hàng đầu trong lĩnh vực Công nghệ thông tin, đi tiên phong trong việc cung cấp các giải pháp CNTT tiên tiến và hiện đại.\",\r\n    \"field\":\"Technology\"\r\n}",
+									"raw": "{\r\n    \"foundedAt\":\"2022-08-08\",\r\n    \"information\":\"Globee (THE BEE WITH GLOBAL QUALITY) was found by a group of IT experts in 2016 after 3 years working together.\",\r\n    \"field\":\"Information Technology\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -855,7 +1060,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW81Iiwicm9sZSI6ImNvbXBhbnkiLCJleHAiOjE2ODM0NjUyNjIsImlhdCI6MTY4MzEwNTI2Mn0.bjNnXy3XLPaF1AFQAqdVA_vV0KDOoxYaoLvLMiaKoq4",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW8xIiwicm9sZSI6ImNvbXBhbnkiLCJleHAiOjE2ODcwMDQxOTIsImlhdCI6MTY4NjY0NDE5Mn0.qYdCe0SYp4O71IGE4JVnXMqi2G23YPd0CiqVd_91oDg",
 											"type": "string"
 										}
 									]
@@ -887,7 +1092,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW8xIiwicm9sZSI6ImNvbXBhbnkiLCJleHAiOjE2ODM0NjYzOTUsImlhdCI6MTY4MzEwNjM5NX0.6hokm4s_jQ7_a9JndfVLBOcgBncwFnlDU9468QZwhD8",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW8xIiwicm9sZSI6ImNvbXBhbnkiLCJleHAiOjE2ODcwMDQxOTIsImlhdCI6MTY4NjY0NDE5Mn0.qYdCe0SYp4O71IGE4JVnXMqi2G23YPd0CiqVd_91oDg",
 									"type": "string"
 								}
 							]
@@ -919,7 +1124,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW8xIiwicm9sZSI6ImNvbXBhbnkiLCJleHAiOjE2ODM0NjYzOTUsImlhdCI6MTY4MzEwNjM5NX0.6hokm4s_jQ7_a9JndfVLBOcgBncwFnlDU9468QZwhD8",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW8xIiwicm9sZSI6ImNvbXBhbnkiLCJleHAiOjE2ODcwMDQxOTIsImlhdCI6MTY4NjY0NDE5Mn0.qYdCe0SYp4O71IGE4JVnXMqi2G23YPd0CiqVd_91oDg",
 									"type": "string"
 								}
 							]
@@ -943,11 +1148,396 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Get Apply is Approved",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW8xIiwicm9sZSI6ImNvbXBhbnkiLCJleHAiOjE2ODcwMDQxOTIsImlhdCI6MTY4NjY0NDE5Mn0.qYdCe0SYp4O71IGE4JVnXMqi2G23YPd0CiqVd_91oDg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/company/cv/apply/approved/recruit/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"company",
+								"cv",
+								"apply",
+								"approved",
+								"recruit",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Apply is Not Approve",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW8xIiwicm9sZSI6ImNvbXBhbnkiLCJleHAiOjE2ODcwMDQxOTIsImlhdCI6MTY4NjY0NDE5Mn0.qYdCe0SYp4O71IGE4JVnXMqi2G23YPd0CiqVd_91oDg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/company/cv/apply/pending/recruit/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"company",
+								"cv",
+								"apply",
+								"pending",
+								"recruit",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Approved Cv",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW8xIiwicm9sZSI6ImNvbXBhbnkiLCJleHAiOjE2ODQ1MjA3MjksImlhdCI6MTY4NDE2MDcyOX0.EnGyLGhND6gBPClj364znh0i5ve8AXycfvvXBHIEVH8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/company/cv/3/approved/recruit/4",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"company",
+								"cv",
+								"3",
+								"approved",
+								"recruit",
+								"4"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
 		{
 			"name": "User Controller",
+			"item": [
+				{
+					"name": "Messenger",
+					"item": [
+						{
+							"name": "Add message",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW8xIiwicm9sZSI6ImNvbXBhbnkiLCJleHAiOjE2ODY2ODkyMTEsImlhdCI6MTY4NjMyOTIxMX0.w85Re6OgydsZ501JEVn4LgiPp95VEHOOGowKKkBepuw",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"content\":\"Hello, are you apply Java Bach-end to FPT Software HCM?\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/user/message/user/4",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"user",
+										"message",
+										"user",
+										"4"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Detail Message",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW8xIiwicm9sZSI6ImNvbXBhbnkiLCJleHAiOjE2ODY2ODkyMTEsImlhdCI6MTY4NjMyOTIxMX0.w85Re6OgydsZ501JEVn4LgiPp95VEHOOGowKKkBepuw",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/user/message/user/2",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"user",
+										"message",
+										"user",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Message",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW8xIiwicm9sZSI6ImNvbXBhbnkiLCJleHAiOjE2ODY2ODkyMTEsImlhdCI6MTY4NjMyOTIxMX0.w85Re6OgydsZ501JEVn4LgiPp95VEHOOGowKKkBepuw",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/user/message",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"user",
+										"message"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Address",
+					"item": [
+						{
+							"name": "Create Address",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW8yIiwicm9sZSI6ImNhbmRpZGF0ZSIsImV4cCI6MTY4NDM0OTYwMSwiaWF0IjoxNjgzOTg5NjAxfQ.oxDEU4bPKiEaXNW33kiAfZ-JfK7T2_hl0EVxKqwSqso",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"city\":\"Ho Chi Minh\",\r\n    \"address\":\"28 Pham Van Dong, Binh Tho, Thu Duc\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/user/create/address",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"user",
+										"create",
+										"address"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Address",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW8xNSIsInJvbGUiOiJjb21wYW55IiwiZXhwIjoxNjg0MTcwNDg2LCJpYXQiOjE2ODM4MTA0ODZ9.-ReJEfScArddEvUWo8YwCnvBYireTPWBEfBmCnwSXEA",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"city\":\"Ha Noi\",\r\n    \"address\":\"73 Hai Ba Trung, Hoan Kiemm\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/user/update/address/17",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"user",
+										"update",
+										"address",
+										"17"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Address For Candidate",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW8yIiwicm9sZSI6ImNhbmRpZGF0ZSIsImV4cCI6MTY4NzAwNDk4MSwiaWF0IjoxNjg2NjQ0OTgxfQ.dYR4calDMqkiALLLtSRQ7vfdm-prBwoR5X7QQvXHTV8",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/user/all/address",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"user",
+										"all",
+										"address"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get Address by id",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW8xNSIsInJvbGUiOiJjb21wYW55IiwiZXhwIjoxNjg0MTcwNDg2LCJpYXQiOjE2ODM4MTA0ODZ9.-ReJEfScArddEvUWo8YwCnvBYireTPWBEfBmCnwSXEA",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/user/address/17",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"user",
+										"address",
+										"17"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Get Profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYW8xIiwicm9sZSI6ImNvbXBhbnkiLCJleHAiOjE2ODcwMDQxOTIsImlhdCI6MTY4NjY0NDE5Mn0.qYdCe0SYp4O71IGE4JVnXMqi2G23YPd0CiqVd_91oDg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/user/profile",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Guest Controller",
 			"item": [
 				{
 					"name": "Get Company",
@@ -993,6 +1583,94 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "Get Top 6 Company Newest",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/api/appcv/top6/company",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"appcv",
+										"top6",
+										"company"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Get Job",
+					"item": [
+						{
+							"name": "Get all recruit",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/api/appcv/recruit",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"appcv",
+										"recruit"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get recruit by id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/api/appcv/recruit/2",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"appcv",
+										"recruit",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Top 6 recruit",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/api/appcv/top6/recruit",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"appcv",
+										"top6",
+										"recruit"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
@@ -1023,12 +1701,12 @@
 					"response": []
 				},
 				{
-					"name": "Get all recruit",
+					"name": "Get All Address For Company",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/api/appcv/recruit",
+							"raw": "localhost:8080/api/appcv/address/company/1",
 							"host": [
 								"localhost"
 							],
@@ -1036,19 +1714,21 @@
 							"path": [
 								"api",
 								"appcv",
-								"recruit"
+								"address",
+								"company",
+								"1"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Get recruit by id",
+					"name": "Get All Job For Company",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/api/appcv/recruit/1",
+							"raw": "localhost:8080/api/appcv/recruit/company/1",
 							"host": [
 								"localhost"
 							],
@@ -1057,6 +1737,7 @@
 								"api",
 								"appcv",
 								"recruit",
+								"company",
 								"1"
 							]
 						}
