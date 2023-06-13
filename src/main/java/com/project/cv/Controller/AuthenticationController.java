@@ -5,6 +5,7 @@ import com.project.cv.JWT.JwtRequest;
 import com.project.cv.JWT.JwtResponse;
 import com.project.cv.JWT.JwtTokenProvider;
 import com.project.cv.JWT.UserDetailServiceImpl;
+import com.project.cv.Service.PasswordResetService;
 import com.project.cv.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +27,8 @@ public class AuthenticationController {
     JwtTokenProvider jwtTokenProvider;
     @Autowired
     UserService userService;
+    @Autowired
+    PasswordResetService passwordResetService;
     @PostMapping("/login")
     public ResponseEntity<JwtResponse> loginUser(@RequestBody JwtRequest jwtRequest) throws Exception{
         try {
@@ -45,7 +48,21 @@ public class AuthenticationController {
             UserDetails userDetails= userDetailService.loadUserByUsername(registerDto.getUsername());
             String jwt = jwtTokenProvider.generateToken(userDetails);
             return ResponseEntity.ok(new JwtResponse(jwt));
+        }else {
+            throw new IllegalArgumentException("Invalid passcode");
         }
-        return ResponseEntity.ok(new JwtResponse(null));
     }
+    @PostMapping("/change-password")
+    public void changePassword(@RequestBody String password){
+        userService.changePassword(password);
+    }
+    @PostMapping("/forgot-password")
+    public void forgotPassword(@RequestBody String email) {
+        passwordResetService.sendPasswordResetMail(email);
+    }
+    @PostMapping("/reset-password")
+    public void resetPassword(@RequestParam String passcode,@RequestBody String password){
+        passwordResetService.resetPassword(passcode, password);
+    }
+
 }

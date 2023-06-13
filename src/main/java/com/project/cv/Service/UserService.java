@@ -12,4 +12,6 @@ public interface UserService {
     User updateUser(UserDto userDto);
     User getProfile();
     UsersDto getInformationUser();
+    void changePassword(String password);
+
 }

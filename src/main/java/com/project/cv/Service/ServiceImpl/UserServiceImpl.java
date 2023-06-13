@@ -103,4 +103,12 @@ public class UserServiceImpl implements UserService {
         return modelMapper.map(user,UsersDto.class);
     }
 
+    @Override
+    public void changePassword(String password) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        User user = userRepository.findUserByName(authentication.getName());
+        user.setPassword(passwordEncoder.encode(password));
+        userRepository.save(user);
+    }
+
 }
