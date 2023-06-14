@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -17,5 +18,5 @@ public interface RecruitRepository extends JpaRepository<Recruit,Integer> {
     List<Recruit> findByCompanyCompanyFnameContainingIgnoreCase(String name);
     List<Recruit> findByPositionContainingIgnoreCase(String position);
     List<Recruit> findByProfessionContainingIgnoreCase(String profession);
-    List<Recruit> findTop6ByOrderByFromDateDesc();
+    List<Recruit>  findTop6ByToDateGreaterThanOrderByToDateDesc(Date currentDate);
 }
